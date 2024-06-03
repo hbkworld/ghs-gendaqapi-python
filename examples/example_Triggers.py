@@ -165,7 +165,7 @@ def main():
 
 
     # Determine the sweep length.
-    return_var, sweep_length = gen.ghs_get_sweep_length()
+    return_var, sweep_length = gen.ghs_get_sweep_length("A")
 
     if return_var != "OK":
         print(
@@ -177,174 +177,45 @@ def main():
         sweep length: {sweep_length}"
       )
 
-    # Set the excitation type and value for an analog channel.
-    return_var = gen.ghs_set_sweep_length("A", 1, "Voltage", 15.0)
-    if return_var != "OK" and return_var != "Adapted":
-        print(f"Failed on GHSGetSweepLength. Return Status: {return_var}")
-        sys.exit()
-    print(f"GHSSetExcitation - Return Status: {return_var}")
-
-    # Determine the excitation type and value for an analog channel.
-    return_var, excitation_type, excitation_value = gen.ghs_get_excitation(
-        "A", 1
-    )
+    # Set the sweep length.
+    return_var = gen.ghs_set_sweep_length("A",1)
     if return_var != "OK":
-        print(f"Failed on GHSGetExcitation. Return Status: {return_var}")
+        print(f"Failed on GHSSetSweepLength. Return Status: {return_var}")
+        sys.exit()
+    print(f"GHSSetSweepLength - Return Status: {return_var}")
+
+    # Determine the trigger position.
+    return_var, trigger_position = gen.ghs_get_trigger_position("A")
+    if return_var != "OK":
+        print(f"Failed on GHSGetTriggerPosition. Return Status: {return_var}")
         sys.exit()
     print(
-        f"GHSGetExcitation - Return Status: {return_var}\
-        Excitation Type: {excitation_type}\
-        Excitation Value: {excitation_value}"
-    )
+        f"GHSGetTriggerPosition - Return Status: {return_var}\
+        trigger_position: {trigger_position}")
 
-    # Set the amplifier mode for an analog channel.
-    return_var = gen.ghs_set_amplifier_mode("A", 1, "Basic")
+    # Set the trigger position.
+    return_var = gen.ghs_set_trigger_position("A", 1)
     if return_var != "OK":
-        print(f"Failed on GHSSetAmplifierMode. Return Status: {return_var}")
+        print(f"Failed on GHSSetTriggerPosition. Return Status: {return_var}")
         sys.exit()
-    print(f"GHSSetAmplifierMode - Return Status: {return_var}")
+    print(f"GHSSetTriggerPosition - Return Status: {return_var}")
 
-    # Determine the amplifier mode for an analog channel.
-    return_var, amplifier_mode = gen.ghs_get_amplifier_mode("A", 1)
+    # Determine the continuous_leadout_time.
+    return_var, continuous_leadout_time = gen.ghs_get_continuous_leadout_time("A")
     if return_var != "OK":
-        print(f"Failed on GHSGetAmplifierMode. Return Status: {return_var}")
+        print(f"Failed on GHSGetContinuousLeadOutTime. Return Status: {return_var}")
         sys.exit()
     print(
-        f"GHSGetAmplifierMode - Return Status: {return_var}\
-        Amplifier Mode: {amplifier_mode}"
+        f"GHSGetContinuousLeadOutTime - Return Status: {return_var}\
+       continuous_leadout_time: {continuous_leadout_time}"
     )
 
     # Set the technical units, unit multiplier and unit offset for an analog channel.
-    return_var = gen.ghs_set_technical_units("A", 1, "KGS", 10.0, 20.0)
+    return_var = gen.ghs_set_continuous_leadout_time("A", 23)
     if return_var != "OK":
-        print(f"Failed on GHSSetTechnicalUnits. Return Status: {return_var}")
+        print(f"Failed on GHSSetContinuousLeadOutTime return Status: {return_var}")
         sys.exit()
-    print(f"GHSSetTechnicalUnits - Return Status: {return_var}")
-
-    # Determine the technical units, unit multiplier and unit offset for an analog channel.
-    return_var, units, multiplier, offset = gen.ghs_get_technical_units("A", 1)
-    if return_var != "OK":
-        print(f"Failed on GHSGetTechnicalUnits. Return Status: {return_var}")
-        sys.exit()
-    print(
-        f"GHSGetTechnicalUnits - Return Status: {return_var}\
-        Units: {units}\
-        Multiplier: {multiplier}\
-        Offset: {offset}"
-    )
-
-    # Set Auto range settings for analog channels.
-    return_var = gen.ghs_set_auto_range("A", 1, "Enable", 10.0)
-    if return_var != "OK":
-        print(f"Failed on GHSSetAutoRange. Return Status: {return_var}")
-        sys.exit()
-    print(f"GHSSetAutoRange - Return Status: {return_var}")
-
-    # Determine Auto range settings for analog channels.
-    return_var, auto_range_enabled, auto_range_time = gen.ghs_get_auto_range(
-        "A", 1
-    )
-    if return_var != "OK":
-        print(f"Failed on GHSGetAutoRange. Return Status: {return_var}")
-        sys.exit()
-    print(
-        f"GHSGetAutoRange - Return Status: {return_var}\
-        Auto Range Enabled: {auto_range_enabled}\
-        Auto Range Time: {auto_range_time}"
-    )
-
-    # Set Command a single shot for auto range.
-    return_var = gen.ghs_cmd_auto_range_now("A", 1, 20.0)
-    if return_var != "OK":
-        print(f"Failed on GHSCmdAutoRangeNow. Return Status: {return_var}")
-        sys.exit()
-    print(f"GHSCmdAutoRangeNow - Return Status: {return_var}")
-
-    # Determine calibration information for an analog channel.
-    (
-        return_var,
-        calibration_date_time,
-        verification_date_time,
-        power_verification_date_time,
-        calibration_lab,
-        verification_lab,
-        power_verification_lab,
-    ) = gen.ghs_get_channel_cal_info("A", 1)
-    if return_var != "OK":
-        print(
-            f"Failed on GHSGetChannelCalibrationInformation. Return Status: {return_var}"
-        )
-        sys.exit()
-    print(
-        f"GHSGetChannelCalibrationInformation - Return Status: {return_var}\
-        Calibration Date Time: {calibration_date_time}\
-        Verification Date Time: {verification_date_time}\
-        Power Verification Date Time: {power_verification_date_time}\
-        Calibration Lab: {calibration_lab}\
-        Verification Lab: {verification_lab}\
-        Power Verification Lab: {power_verification_lab}"
-    )
-
-    ## NOTE: Enter valid timer/counter channel slot ID and index
-    # Set the gate time for a timer/counter channel.
-    return_var = gen.ghs_set_timer_counter_gate_time("A", 1, 23.0)
-    if return_var != "OK":
-        print(
-            f"Failed on GHSSetTimerCounterGateTime. Return Status: {return_var}"
-        )
-        sys.exit()
-    print(f"GHSSetTimerCounterGateTime - Return Status: {return_var}")
-
-    # Determine the gate time for a timer/counter channel.
-    return_var, gate_time = gen.ghs_get_timer_counter_gate_time("A", 1)
-    if return_var != "OK":
-        print(
-            f"Failed on GHSGetTimerCounterGateTime. Return Status: {return_var}"
-        )
-        sys.exit()
-    print(
-        f"GHSGetTimerCounterGateTime - Return Status: {return_var}\
-        Gate Time: {gate_time}"
-    )
-
-    # Set the mode for a timer/counter channel.
-    return_var = gen.ghs_set_timer_counter_mode("A", 1, "CountQuadrature")
-    if return_var != "OK":
-        print(f"Failed on GHSSetTimerCounterMode. Return Status: {return_var}")
-        sys.exit()
-    print(f"GHSSetTimerCounterMode - Return Status: {return_var}")
-
-    # Determine the mode for a timer/counter channel.
-    return_var, mode = gen.ghs_get_timer_counter_mode("A", 1)
-    if return_var != "OK":
-        print(f"Failed on GHSGetTimerCounterMode. Return Status: {return_var}")
-        sys.exit()
-    print(
-        f"GHSGetTimerCounterMode - Return Status: {return_var}\
-        Timer/counter mode: {mode}"
-    )
-
-    # Set the range for a timer/counter channel.
-    return_var = gen.ghs_set_timer_counter_range("A", 1, 10.0, 20.0)
-    if return_var != "OK":
-        print(
-            f"Failed on GHSSetTimerCounterRange. Return Status: {return_var}"
-        )
-        sys.exit()
-    print(f"GHSSetTimerCounterRange - Return Status: {return_var}")
-
-    # Determine the range for a timer/counter channel.
-    return_var, lower, upper = gen.ghs_get_timer_counter_range("A", 1)
-    if return_var != "OK":
-        print(
-            f"Failed on GHSGetTimerCounterRange. Return Status: {return_var}"
-        )
-        sys.exit()
-    print(
-        f"GHSGetTimerCounterRange - Return Status: {return_var}\
-        Lower value: {lower}\
-        Upper value: {upper}"
-    )
+    print(f"GHSSetContinuousLeadOutTime - Return Status: {return_var}")
 
     # Disconnect
     return_var = gen.ghs_disconnect()

@@ -509,3 +509,256 @@ def set_external_minimum_pulse_width(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
+
+
+def get_sweep_length(
+    con_handle: ConnectionHandler,
+    slot_id: str
+) -> tuple[str, int | None]:
+    """Determine the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     Read - This method can be called by multiple connected clients at
+     same time.
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to determine
+        the name for.
+        channel_type: The specific channel type.
+
+    Returns:
+       Tuple with status and name of the channel.
+    """
+    sweepLengthParamDict = {
+        'SlotId': slot_id,
+    }
+    response_json = con_handle.send_request_wait_response (
+       "GetSweepLength", sweepLengthParamDict
+    )
+
+    if ("SweepLength" not in response_json) or (
+        response_json[RETURN_KEY] != GHSReturnValue["OK"]
+    ):
+        return to_string(response_json[RETURN_KEY], GHSReturnValue), None
+    return (
+        to_string(response_json[RETURN_KEY], GHSReturnValue),
+        response_json["SweepLength"]
+    )
+
+def set_sweep_length(
+    con_handle: ConnectionHandler,
+    slot_id: str,
+    sweep_length: str | int,
+) -> str:
+    """Set the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     ReadWrite - This method will only process requests from the
+     connected client with the most privileges order (Privileges order:
+     1- Perception, 2- GenDaq, 3- Other)
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to set
+        the name for.
+        channel_type: The specific channel type.
+        channel_name: The desired channel name.
+
+    Returns:
+       String value representing request status.
+    """
+    sweep_length_dict = {
+        "SlotId":slot_id,
+        "SweepLength": sweep_length,
+    }
+
+    if not slot_id or not sweep_length:
+        return "NullPtrArgument"
+
+
+    if isinstance(sweep_length, int):
+        pass
+
+    else:
+        return "InvalidDataType"
+    
+    response_json = con_handle.send_request_wait_response(
+        "SetSweepLength", sweep_length_dict
+    )
+
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+
+
+def get_trigger_position(
+    con_handle: ConnectionHandler,
+    slot_id: str
+) -> tuple[str, int | None]:
+    """Determine the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     Read - This method can be called by multiple connected clients at
+     same time.
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to determine
+        the name for.
+        channel_type: The specific channel type.
+
+    Returns:
+       Tuple with status and name of the channel.
+    """
+    TriggerPosition_ParamDict = {
+        'SlotId': slot_id,
+    }
+    response_json = con_handle.send_request_wait_response (
+       "GetTriggerPosition", TriggerPosition_ParamDict
+    )
+
+    if ("TriggerPosition" not in response_json) or (
+        response_json[RETURN_KEY] != GHSReturnValue["OK"]
+    ):
+        return to_string(response_json[RETURN_KEY], GHSReturnValue), None
+    return (
+        to_string(response_json[RETURN_KEY], GHSReturnValue),
+        response_json["TriggerPosition"]
+    )
+
+def set_trigger_position(
+    con_handle: ConnectionHandler,
+    slot_id: str,
+    trigger_position: str | int,
+) -> str:
+    """Set the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     ReadWrite - This method will only process requests from the
+     connected client with the most privileges order (Privileges order:
+     1- Perception, 2- GenDaq, 3- Other)
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to set
+        the name for.
+        channel_type: The specific channel type.
+        channel_name: The desired channel name.
+
+    Returns:
+       String value representing request status.
+    """
+    trigger_position_dict = {
+        "SlotId":slot_id,
+        "TriggerPosition": trigger_position,
+    }
+
+    if not slot_id or not trigger_position:
+        return "NullPtrArgument"
+
+
+    if isinstance(trigger_position, int):
+        pass
+
+    else:
+        return "InvalidDataType"
+    
+    response_json = con_handle.send_request_wait_response(
+        "SetTriggerPosition", trigger_position_dict
+    )
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+
+
+def get_continuous_leadout_time(
+    con_handle: ConnectionHandler,
+    slot_id: str
+) -> tuple[str, int | None]:
+    """Determine the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     Read - This method can be called by multiple connected clients at
+     same time.
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to determine
+        the name for.
+        channel_type: The specific channel type.
+
+    Returns:
+       Tuple with status and name of the channel.
+    """
+    continuous_leadout_time_paramDict = {
+        'SlotId': slot_id,
+    }
+    response_json = con_handle.send_request_wait_response (
+       "GetContinuousLeadOutTime", continuous_leadout_time_paramDict
+    )
+
+    if ("ContinuousLeadOutTime" not in response_json) or (
+        response_json[RETURN_KEY] != GHSReturnValue["OK"]
+    ):
+        return to_string(response_json[RETURN_KEY], GHSReturnValue), None
+    return (
+        to_string(response_json[RETURN_KEY], GHSReturnValue),
+        response_json["ContinuousLeadOutTime"]
+    )
+
+def set_continuous_leadout_time(
+    con_handle: ConnectionHandler,
+    slot_id: str,
+    continuous_leadout_time: str | int,
+) -> str:
+    """Set the name of a channel.
+
+     The channel name is UTF-8 encoded.
+
+     ReadWrite - This method will only process requests from the
+     connected client with the most privileges order (Privileges order:
+     1- Perception, 2- GenDaq, 3- Other)
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+        slot_id: The slot containing the recorder to get number of
+        channels for (e.g. 'A' for the first slot).
+        channel_index: The one-based index of the specified channel type to set
+        the name for.
+        channel_type: The specific channel type.
+        channel_name: The desired channel name.
+
+    Returns:
+       String value representing request status.
+    """
+    continuous_leadout_time_dict = {
+        "SlotId":slot_id,
+        "ContinuousLeadOutTime": continuous_leadout_time,
+    }
+
+    if not slot_id or not continuous_leadout_time:
+        return "NullPtrArgument"
+
+
+    if isinstance(continuous_leadout_time, int):
+        pass
+
+    else:
+        return "InvalidDataType"
+    
+    response_json = con_handle.send_request_wait_response(
+        "SetContinuousLeadOutTime", continuous_leadout_time_dict
+    )
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)

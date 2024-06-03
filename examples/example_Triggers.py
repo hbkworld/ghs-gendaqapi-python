@@ -210,7 +210,7 @@ def main():
        continuous_leadout_time: {continuous_leadout_time}"
     )
 
-    # Set the technical units, unit multiplier and unit offset for an analog channel.
+     # set the continuous_leadout_time.
     return_var = gen.ghs_set_continuous_leadout_time("A", 23)
     if return_var != "OK":
         print(f"Failed on GHSSetContinuousLeadOutTime return Status: {return_var}")

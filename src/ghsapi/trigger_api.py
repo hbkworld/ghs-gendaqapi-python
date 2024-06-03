@@ -38,23 +38,15 @@ from .ghsapi_states import (
 def get_start_data_recording(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    
+    """Determine the start data recording.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
-
-    Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * GHSStartDataRecording - Start Data Recording
     """
     response_json = con_handle.send_request_wait_response (
        "GetStartDataRecordingMethod", None
@@ -73,25 +65,18 @@ def set_start_data_recording(
     con_handle: ConnectionHandler,
     start_data_recording: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the start data recording.
 
-     The channel name is UTF-8 encoded.
-
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        slot_id: The slot containing the recorder
+        start_data_recording: data recording
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     start_data_recording_dict = {
         "Method": start_data_recording,
@@ -154,25 +139,17 @@ def set_stop_data_recording(
     con_handle: ConnectionHandler,
     stop_data_recording: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the stop data recording.
 
-     The channel name is UTF-8 encoded.
-
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * stop_data_recording: stop data recording
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     stop_data_recording_dict = {
         "Method": stop_data_recording,
@@ -199,23 +176,14 @@ def set_stop_data_recording(
 def get_number_of_Mainframe_sweeps(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the number of mainframe sweeps.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
-
-    Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * number_of_mainframe_sweeps - number of mainframe sweeps
     """
     response_json = con_handle.send_request_wait_response (
        "GetNumberOfMainframeSweeps", None
@@ -234,25 +202,19 @@ def set_number_of_Mainframe_sweeps(
     con_handle: ConnectionHandler,
     number_of_Mainframe_sweeps: int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the mainframe sweeps.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * number_of_mainframe_sweeps - number of mainframe sweeps
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     Mainframesweeps_dict = {
         "Count": number_of_Mainframe_sweeps,
@@ -277,23 +239,14 @@ def set_number_of_Mainframe_sweeps(
 def get_trigger_arm_enabled(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the trigger arm enable.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
-
-    Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * trigger_arm_enabled: trigger arm enable
     """
     response_json = con_handle.send_request_wait_response (
        "GetTriggerArmEnabled", None
@@ -312,25 +265,19 @@ def set_trigger_arm_enabled(
     con_handle: ConnectionHandler,
     trigger_arm_enable: bool,
 ) -> str:
-    """Set the name of a channel.
+    """Set the trigger arm enable.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * trigger_arm_enabled: trigger arm enable
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     trigger_arm_enable_dict = {
         "Enable": trigger_arm_enable,
@@ -355,23 +302,14 @@ def set_trigger_arm_enabled(
 def get_external_trigger_mode(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the external trigger mode.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
-
-    Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * external_trigger_mode: external trigger mode
     """
     response_json = con_handle.send_request_wait_response (
        "GetExternalTriggerMode", None
@@ -390,25 +328,19 @@ def set_external_trigger_mode(
     con_handle: ConnectionHandler,
     external_trigger_mode: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the external trigger mode.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * external_trigger_mode: external trigger mode
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return value
     """
     external_trigger_mode_dict = {
         "Mode": external_trigger_mode,
@@ -416,7 +348,6 @@ def set_external_trigger_mode(
 
     if not external_trigger_mode:
         return "NullPtrArgument"
-
 
     if isinstance(external_trigger_mode, int):
         pass
@@ -430,28 +361,17 @@ def set_external_trigger_mode(
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
 
-
-
 def get_external_minimum_pulse_width(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the external minimum pulse width or debounce filter time.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
-
-    Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * external minimum pulse width - Debounce filter time
     """
     response_json = con_handle.send_request_wait_response (
        "GetDebounceFilterTime", None
@@ -470,25 +390,18 @@ def set_external_minimum_pulse_width(
     con_handle: ConnectionHandler,
     debounce_filter_time: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the external minimum pulse width or debounce filter time.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
-
+        * number_of_mainframe_sweeps - number of mainframe sweeps
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     debounce_filter_time_dict = {
         "DebounceIn": debounce_filter_time,
@@ -515,24 +428,19 @@ def get_sweep_length(
     con_handle: ConnectionHandler,
     slot_id: str
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the sweep length.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
-
+        * slot_id: The slot containing the recorder
+ 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * Sweep Length - Sweep length
     """
+
     sweepLengthParamDict = {
         'SlotId': slot_id,
     }
@@ -554,25 +462,20 @@ def set_sweep_length(
     slot_id: str,
     sweep_length: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the sweep length.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * slot_id: The slot containing the recorder
+        * sweep_length: length of the sweep
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     sweep_length_dict = {
         "SlotId":slot_id,
@@ -581,7 +484,6 @@ def set_sweep_length(
 
     if not slot_id or not sweep_length:
         return "NullPtrArgument"
-
 
     if isinstance(sweep_length, int):
         pass
@@ -600,23 +502,17 @@ def get_trigger_position(
     con_handle: ConnectionHandler,
     slot_id: str
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the trigger position.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+        * slot_id: The slot containing the recorder
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * trigger_position - trigger position
     """
     TriggerPosition_ParamDict = {
         'SlotId': slot_id,
@@ -639,25 +535,23 @@ def set_trigger_position(
     slot_id: str,
     trigger_position: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the trigger position.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *If the specified timer/counter mode is not supported by the recorder, the
+    timer/counter mode remains unchanged.*
+
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * slot_id: The slot containing the recorder
+        * trigger_position: trigger position
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     trigger_position_dict = {
         "SlotId":slot_id,
@@ -684,23 +578,17 @@ def get_continuous_leadout_time(
     con_handle: ConnectionHandler,
     slot_id: str
 ) -> tuple[str, int | None]:
-    """Determine the name of a channel.
+    """Determine the  continuous lead out time.
 
-     The channel name is UTF-8 encoded.
-
-     Read - This method can be called by multiple connected clients at
-     same time.
+    *Read - This method can be called by multiple connected clients at same
+    time.*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to determine
-        the name for.
-        channel_type: The specific channel type.
+        * slot_id: The slot containing the recorder
 
     Returns:
-       Tuple with status and name of the channel.
+        * GHSReturnValue - API return values
+        * continuous_leadout_time - continuous leadout time
     """
     continuous_leadout_time_paramDict = {
         'SlotId': slot_id,
@@ -723,25 +611,23 @@ def set_continuous_leadout_time(
     slot_id: str,
     continuous_leadout_time: str | int,
 ) -> str:
-    """Set the name of a channel.
+    """Set the continuous lead out time.
 
-     The channel name is UTF-8 encoded.
+    *The system needs to be idle before calling this function.*
 
-     ReadWrite - This method will only process requests from the
-     connected client with the most privileges order (Privileges order:
-     1- Perception, 2- GenDaq, 3- Other)
+    *If the specified timer/counter mode is not supported by the recorder, the
+    timer/counter mode remains unchanged.*
+
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
 
     Args:
-        con_handle: A unique identifier per mainframe connection.
-        slot_id: The slot containing the recorder to get number of
-        channels for (e.g. 'A' for the first slot).
-        channel_index: The one-based index of the specified channel type to set
-        the name for.
-        channel_type: The specific channel type.
-        channel_name: The desired channel name.
+        * slot_id: The slot containing the recorder
+        * continuous_leadout_time: continuous lead out time
 
     Returns:
-       String value representing request status.
+        * GHSReturnValue - API return values
     """
     continuous_leadout_time_dict = {
         "SlotId":slot_id,
@@ -750,7 +636,6 @@ def set_continuous_leadout_time(
 
     if not slot_id or not continuous_leadout_time:
         return "NullPtrArgument"
-
 
     if isinstance(continuous_leadout_time, int):
         pass

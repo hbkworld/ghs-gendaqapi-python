@@ -257,6 +257,21 @@ GHSChannelType = {
     "TimerCounter": 3
 }
 
+GHSStartDataRecordingMethod = {
+    "StartDataRecording_OnStartOfAcquisition": 1,
+    "StartDataRecording_WaitForTrigger": 2,
+    "StartDataRecording_WaitForTriggerToMemory": 3,
+    "StartDataRecording_ReducedAndTriggerToMemory": 4
+}
+
+	
+GHSStopDataRecordingMethod = {
+    "StopDataRecording_Untriggered": 1,
+    "StopDataRecording_FirstTrigger": 2,
+    "StopDataRecording_ReTrigger": 3,
+    "StopDataRecording_StopTrigger": 4
+}
+
 def to_string(value: int, ghs_dict: dict) -> str:
     """Get status key by value from dictionary."""
 

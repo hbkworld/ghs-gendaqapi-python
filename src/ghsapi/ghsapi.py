@@ -39,6 +39,7 @@ from . import mainframe_api as _mainframe
 from . import manage_mainframe_settings as _manage_mainframe_settings
 from . import manage_recordings_api as _manage_recordings
 from . import recorder_api as _recorder
+from . import trigger_api as _trigger
 from .connection import ConnectionHandler
 from .ghsapi_states import (
     RETURN_KEY,
@@ -1632,3 +1633,314 @@ class GHS:
             lower_value,
             upper_value,
         )
+        
+    def ghs_set_start_data_recording(
+        self,
+        start_data_recording: str | int,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_start_data_recording(
+            self._con_handle,
+            start_data_recording,
+        )
+
+    def ghs_get_start_data_recording(
+        self, 
+     ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_start_data_recording(
+            self._con_handle)
+        
+        
+
+    def ghs_set_stop_data_recording(
+        self,
+        stop_data_recording: str | int,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_stop_data_recording(
+            self._con_handle,
+            stop_data_recording,
+        )
+
+    def ghs_get_stop_data_recording(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_stop_data_recording(
+            self._con_handle)
+        
+        
+    
+    def ghs_set_trigger_arm_enabled(
+        self,
+        trigger_arm_enable: bool,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_trigger_arm_enabled(
+            self._con_handle,
+            trigger_arm_enable,
+        )
+
+    def ghs_get_trigger_arm_enabled(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_trigger_arm_enabled(
+            self._con_handle)
+        
+    def ghs_set_external_trigger_mode(
+        self,
+        external_trigger_mode: int,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_external_trigger_mode(
+            self._con_handle,
+            external_trigger_mode,
+        )
+
+    def ghs_get_external_trigger_mode(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_external_trigger_mode(
+            self._con_handle)
+        
+        
+   
+    def ghs_set_number_of_mainframe_sweeps(
+        self,
+        number_of_mainframe_sweeps: int,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_number_of_Mainframe_sweeps(
+            self._con_handle,
+            number_of_mainframe_sweeps,
+        )
+
+    def ghs_get_number_of_mainframe_sweeps(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_number_of_Mainframe_sweeps(
+            self._con_handle)
+        
+        
+   
+    def ghs_set_external_minimum_pulse_width(
+        self,
+        number_of_mainframe_sweeps: int,
+    ) -> str:
+        """Set the mode for a timer/counter channel.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+            * mode: The desired timer/counter mode. Default is RPMUniDirectional.
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_external_minimum_pulse_width(
+            self._con_handle,
+            number_of_mainframe_sweeps,
+        )
+
+    def ghs_get_external_minimum_pulse_width(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the range for a timer/counter channel.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * channel_index: The zero-based index of the channel
+
+        Returns:
+            * GHSReturnValue - API return values
+            * lower_value - The lower range value.
+            * upper_value - The upper range value.
+        """
+
+        return _trigger.get_external_minimum_pulse_width(
+            self._con_handle)
+        
+        
+        

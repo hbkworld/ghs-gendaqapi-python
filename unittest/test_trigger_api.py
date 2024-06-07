@@ -63,12 +63,12 @@ class TestTrigger(unittest.TestCase):
                         ("test_set_stop_data_recording",trigger_api.set_stop_data_recording,"Method","StopDataRecording_FirstTrigger",None),
                         ("test_set_number_of_mainframe_sweeps",trigger_api.set_number_of_mainframe_sweeps,"Count",1,None),
                         ("test_set_trigger_arm_enabled",trigger_api.set_trigger_arm_enabled,"Enable",1,None),
-                        ("test_set_external_trigger_mode",trigger_api.set_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
-                        ("test_set_external_minimum_pulse_width",trigger_api.set_external_minimum_pulse_width,"DebounceIn","DeBounceFilterTime_2",None),
                         ("test_set_sweep_length",trigger_api.set_sweep_length,"SweepLength",3,"A"),
                         ("test_set_trigger_position",trigger_api.set_trigger_position,"TriggerPosition",6,"A"),
-                        ("test_set_continuous_leadout_time",trigger_api.set_continuous_leadout_time,"ContinuousLeadOutTime",2,"A"),]
-                        
+                        ("test_set_continuous_leadout_time",trigger_api.set_continuous_leadout_time,"ContinuousLeadOutTime",2,"A"),
+                        ("test_set_external_trigger_mode",trigger_api.set_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
+                        ("test_set_external_minimum_pulse_width",trigger_api.set_external_minimum_pulse_width,"DebounceIn","DeBounceFilterTime_2",None),]
+    
     gen = ghsapi.GHS()
 
     def setUp(self):
@@ -219,6 +219,29 @@ class TestTrigger(unittest.TestCase):
                         "OK",
                         f"\n{testname}: failure response test failed \n",
                     )
+    
+    def test_set_fieldbus_trigger_configuration_neg(self):
+        for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:
+            with self.subTest(testname = testname, testcase = testcase, paramName = paramName,paramvalue = paramvalue,paramSlot = paramSlot):
+
+                with patch(
+                    "test_connection_handler.connection.ConnectionHandler.connection_establish"
+                ) as mock_con_est:
+                    mock_con_est.return_value = self.GHSReturnValue["OK"]
+
+            if paramSlot:
+                self.assertEqual(
+                    testcase(self.con_handle, paramSlot, 0.1),
+                    "InvalidDataType",
+                    f"\n{testname}: failure response test failed .\n",
+                )
+            else:
+                self.assertEqual(
+                    testcase(self.con_handle, 0.1),
+                    "InvalidDataType",
+                    f"\n{testname}: failure response test failed .\n",
+                )  
+
                     
     def test_set_fieldbus_trigger_configuration_null_args(self):
         """Test set_fieldbus_trigger_configuration with null args"""
@@ -243,28 +266,7 @@ class TestTrigger(unittest.TestCase):
                         f"\n{testname}: failure response test failed .\n",
                     )  
 
-    def test_set_fieldbus_trigger_configuration_invalid_args(self):
-        """Test set_fieldbus_trigger_configuration with invalid args"""
-        for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:
-            with self.subTest(testname = testname, testcase = testcase, paramName = paramName,paramvalue = paramvalue,paramSlot = paramSlot):
-                with patch(
-                    "test_connection_handler.connection.ConnectionHandler.connection_establish"
-                ) as mock_con_est:
-                    mock_con_est.return_value = self.GHSReturnValue["OK"]
-
-                if paramSlot:
-                    self.assertEqual(
-                        testcase(self.con_handle, paramSlot, "."), #passing invalid argument
-                        "InvalidDataType",
-                        f"\n{testname}: failure response test failed .\n",
-                    )
-                else:
-                    self.assertEqual(
-                        testcase(self.con_handle, "."), #passing invalid argument
-                        "InvalidDataType",
-                        f"\n{testname}: failure response test failed .\n",
-                    )  
-
+    
 
 if __name__ == "__main__":
     unittest.main(

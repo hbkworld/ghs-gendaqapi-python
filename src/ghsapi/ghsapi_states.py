@@ -271,6 +271,21 @@ GHSStopDataRecordingMethod = {
     "StopDataRecording_ReTrigger": 3,
     "StopDataRecording_StopTrigger": 4
 }
+GHSExternalTriggerInMode = {
+    "ExternalTriggerInMode_Disabled":  0,
+    "ExternalTriggerInMode_RisingEdge": 1,
+    "ExternalTriggerInMode_FallingEdge": 2,
+    "ExternalTriggerInMode_RisingEdge_InToOut": 3,
+    "ExternalTriggerInMode_FallingEdge_InToOut": 4
+}
+
+GHSDeBounceFilterTime = {
+    "DeBounceFilterTime_05": 0,
+    "DeBounceFilterTime_1": 1,
+    "DeBounceFilterTime_2": 2,
+    "DeBounceFilterTime_5": 3,
+    "DeBounceFilterTime_10": 4
+}
 
 def to_string(value: int, ghs_dict: dict) -> str:
     """Get status key by value from dictionary."""

@@ -375,8 +375,8 @@ class TestTrigger(unittest.TestCase):
                 f"Failed on setting trigger position as Null pointer\n",
             )
         return_var, trigger_position = self.gen.ghs_get_trigger_position("A")
-        self.assertEqual(isinstance(trigger_position, int | None),
-            True,
+        self.assertEqual(isinstance(trigger_position, int | str ),
+            False,
             f"1 Failed on get_trigger_position\n",
             )
         

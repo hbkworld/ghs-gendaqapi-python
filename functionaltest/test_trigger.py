@@ -38,7 +38,7 @@ sys.path.append(parentdir)
 
 from src.ghsapi import ghsapi
 
-IP_ADDRESS = "10.96.129.185"
+IP_ADDRESS = "10.96.129.129"
 PORT_NO = 8006
 
 
@@ -46,8 +46,8 @@ class TestTrigger(unittest.TestCase):
     """Trigger Field Bus configuration API functional test."""
 
     gen = ghsapi.GHS()
-    get_trigger_api_list = [("get_start_data_recording",gen.ghs_get_start_data_recording,"Method","StartDataRecording_OnStartOfAcquisition",None),
-                        ("get_stop_data_recording",gen.ghs_get_stop_data_recording,"Method","StopDataRecording_FirstTrigger",None),
+    get_trigger_api_list = [("get_start_data_recording",gen.ghs_get_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
+                        ("get_stop_data_recording",gen.ghs_get_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("get_number_of_mainframe_sweeps",gen.ghs_get_number_of_mainframe_sweeps,"Count",1,None),
                         ("get_trigger_arm_enabled",gen.ghs_get_trigger_arm_enabled,"Enable",1,None),
                         ("get_external_trigger_mode",gen.ghs_get_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
@@ -55,8 +55,8 @@ class TestTrigger(unittest.TestCase):
                         ("get_sweep_length",gen.ghs_get_sweep_length,"SweepLength",2,"A"),
                         ("get_trigger_position",gen.ghs_get_trigger_position,"TriggerPosition",6,"A"),
                         ("get_continuous_leadout_time",gen.ghs_get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"Method",1,None),
-                        #("set_stop_data_recording",gen.ghs_set_stop_data_recording,"Method",3,None),
+    set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"StartMethod",1,None),
+                        #("set_stop_data_recording",gen.ghs_set_stop_data_recording,"StopMethod",3,None),
                         ("set_number_of_mainframe_sweeps",gen.ghs_set_number_of_mainframe_sweeps,"Count",1,None),
                         ("set_trigger_arm_enabled",gen.ghs_set_trigger_arm_enabled,"Enable",1,None),
                         ("set_sweep_length",gen.ghs_set_sweep_length,"SweepLength",4,"A"),

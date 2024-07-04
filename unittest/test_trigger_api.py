@@ -50,8 +50,8 @@ class TestTrigger(unittest.TestCase):
     con_handle = connection.ConnectionHandler()
     GHSReturnValue = ghsapi_states.GHSReturnValue
     RETURN_KEY = ghsapi_states.RETURN_KEY
-    get_trigger_api_list = [("test_get_start_data_recording",trigger_api.get_start_data_recording,"Method","StartDataRecording_OnStartOfAcquisition",None),
-                        ("test_get_stop_data_recording",trigger_api.get_stop_data_recording,"Method","StopDataRecording_FirstTrigger",None),
+    get_trigger_api_list = [("test_get_start_data_recording",trigger_api.get_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
+                        ("test_get_stop_data_recording",trigger_api.get_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_get_number_of_mainframe_sweeps",trigger_api.get_number_of_mainframe_sweeps,"Count",1,None),
                         ("test_get_trigger_arm_enabled",trigger_api.get_trigger_arm_enabled,"Enable",1,None),
                         ("test_get_external_trigger_mode",trigger_api.get_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
@@ -59,8 +59,8 @@ class TestTrigger(unittest.TestCase):
                         ("test_get_sweep_length",trigger_api.get_sweep_length,"SweepLength",3,"A"),
                         ("test_get_trigger_position",trigger_api.get_trigger_position,"TriggerPosition",6,"A"),
                         ("test_get_continuous_leadout_time",trigger_api.get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"Method","StartDataRecording_OnStartOfAcquisition",None),
-                        ("test_set_stop_data_recording",trigger_api.set_stop_data_recording,"Method","StopDataRecording_FirstTrigger",None),
+    set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
+                        ("test_set_stop_data_recording",trigger_api.set_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_set_number_of_mainframe_sweeps",trigger_api.set_number_of_mainframe_sweeps,"Count",1,None),
                         ("test_set_trigger_arm_enabled",trigger_api.set_trigger_arm_enabled,"Enable",1,None),
                         ("test_set_sweep_length",trigger_api.set_sweep_length,"SweepLength",3,"A"),

@@ -52,13 +52,13 @@ def get_start_data_recording(
        "GetStartDataRecordingMethod", None
     )
 
-    if ("Method" not in response_json) or (
+    if ("StartMethod" not in response_json) or (
         response_json[RETURN_KEY] != GHSReturnValue["OK"]
     ):
         return to_string(response_json[RETURN_KEY], GHSReturnValue), None
     return (
         to_string(response_json[RETURN_KEY], GHSReturnValue),
-        response_json["Method"]
+        response_json["StartMethod"]
     )
 
 def set_start_data_recording(
@@ -79,7 +79,7 @@ def set_start_data_recording(
         * GHSReturnValue - API return values
     """
     start_data_recording_dict = {
-        "Method": start_data_recording,
+        "StartMethod": start_data_recording,
     }
 
     if not start_data_recording:
@@ -126,13 +126,13 @@ def get_stop_data_recording(
        "GetStopDataRecordingMethod", None
     )
 
-    if ("Method" not in response_json) or (
+    if ("StopMethod" not in response_json) or (
         response_json[RETURN_KEY] != GHSReturnValue["OK"]
     ):
         return to_string(response_json[RETURN_KEY], GHSReturnValue), None
     return (
         to_string(response_json[RETURN_KEY], GHSReturnValue),
-        response_json["Method"]
+        response_json["StopMethod"]
     )
     
 def set_stop_data_recording(
@@ -152,7 +152,7 @@ def set_stop_data_recording(
         * GHSReturnValue - API return values
     """
     stop_data_recording_dict = {
-        "Method": stop_data_recording,
+        "StopMethod": stop_data_recording,
     }
 
     if not stop_data_recording:
@@ -173,7 +173,7 @@ def set_stop_data_recording(
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
 
-def get_number_of_Mainframe_sweeps(
+def get_number_of_mainframe_sweeps(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:
     """Determine the number of mainframe sweeps.
@@ -198,7 +198,7 @@ def get_number_of_Mainframe_sweeps(
         response_json["Count"]
     )
 
-def set_number_of_Mainframe_sweeps(
+def set_number_of_mainframe_sweeps(
     con_handle: ConnectionHandler,
     number_of_Mainframe_sweeps: int,
 ) -> str:
@@ -349,7 +349,7 @@ def set_external_trigger_mode(
     if not external_trigger_mode:
         return "NullPtrArgument"
 
-    if isinstance(external_trigger_mode, int):
+    if isinstance(external_trigger_mode, int | str):
         pass
 
     else:
@@ -411,7 +411,7 @@ def set_external_minimum_pulse_width(
         return "NullPtrArgument"
 
 
-    if isinstance(debounce_filter_time, int):
+    if isinstance(debounce_filter_time, int | str):
         pass
 
     else:
@@ -485,7 +485,7 @@ def set_sweep_length(
     if not slot_id or not sweep_length:
         return "NullPtrArgument"
 
-    if isinstance(sweep_length, int):
+    if isinstance(sweep_length, int | str):
         pass
 
     else:
@@ -562,7 +562,7 @@ def set_trigger_position(
         return "NullPtrArgument"
 
 
-    if isinstance(trigger_position, int):
+    if isinstance(trigger_position, int | str):
         pass
 
     else:
@@ -609,7 +609,7 @@ def get_continuous_leadout_time(
 def set_continuous_leadout_time(
     con_handle: ConnectionHandler,
     slot_id: str,
-    continuous_leadout_time: str | int,
+    continuous_leadout_time: int,
 ) -> str:
     """Set the continuous lead out time.
 

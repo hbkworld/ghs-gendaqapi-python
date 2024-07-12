@@ -1812,7 +1812,7 @@ class GHS:
             * GHSReturnValue - API return values
         """
 
-        return _trigger.set_number_of_Mainframe_sweeps(
+        return _trigger.set_number_of_mainframe_sweeps(
             self._con_handle,
             number_of_mainframe_sweeps,
         )
@@ -1830,7 +1830,7 @@ class GHS:
             * number_of_mainframe_sweeps - number of mainframe sweeps
         """
 
-        return _trigger.get_number_of_Mainframe_sweeps(
+        return _trigger.get_number_of_mainframe_sweeps(
             self._con_handle)
         
         

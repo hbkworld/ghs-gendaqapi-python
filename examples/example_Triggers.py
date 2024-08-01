@@ -36,7 +36,7 @@ sys.path.append(parentdir)
 
 from src.ghsapi import ghsapi
 
-IP_ADDRESS = "10.96.129.102"
+IP_ADDRESS = "10.96.129.129"
 PORT_NO = 8006
 
 
@@ -103,6 +103,22 @@ def main():
         sys.exit()
     print(f"GHSGetNumberofMainframeSweep - Return Status: {return_var}\
         number_of_mainframe_sweep: {number_of_mainframe_sweep}"
+    )
+    
+      # Set Number of Mainframe sweeps
+    return_var = gen.ghs_set_sweep_count_status(1)
+    if return_var != "OK":
+        print(f"Failed on GHSSetSweepCountStatus. Return Status: {return_var}")
+        sys.exit()
+    print(f"GHSSetSweepCountStatus - Return Status: {return_var}")
+
+    # Get sweep count status
+    return_var, sweep_count_status = gen.ghs_get_sweep_count_status()
+    if return_var != "OK":
+        print(f"Failed on GHSGetSweepCountStatus. Return Status: {return_var}")
+        sys.exit()
+    print(f"GHSGetSweepCountStatus - Return Status: {return_var}\
+        sweep_count_status: {sweep_count_status}"
     )
     
     # Get arm trigger enable type

@@ -1833,6 +1833,45 @@ class GHS:
         return _trigger.get_number_of_mainframe_sweeps(
             self._con_handle)
         
+    def ghs_set_sweep_count_status(
+        self,
+        sweep_count_status: int,
+    ) -> str:
+        """Set the sweep count status.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * sweep_count_status - sweep count status
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_sweep_count_status(
+            self._con_handle,
+            sweep_count_status,
+        )
+
+    def ghs_get_sweep_count_status(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the sweep count status.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * sweep_count_status - sweep_count_status enable/disable
+        """
+
+        return _trigger.get_sweep_count_status(
+            self._con_handle)
         
    
     def ghs_set_external_minimum_pulse_width(

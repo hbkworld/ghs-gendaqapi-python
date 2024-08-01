@@ -236,6 +236,68 @@ def set_number_of_mainframe_sweeps(
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
 
+def get_sweep_count_status(
+    con_handle: ConnectionHandler,
+) -> tuple[str, int | None]:
+    """Determine the sweep count status
+
+    *Read - This method can be called by multiple connected clients at same
+    time.*
+
+    Returns:
+        * GHSReturnValue - API return values
+        * number_of_mainframe_sweeps - number of mainframe sweeps
+    """
+    response_json = con_handle.send_request_wait_response (
+       "GetSweepCountStatus", None
+    )
+
+    if ("SweepCountStatus" not in response_json) or (
+        response_json[RETURN_KEY] != GHSReturnValue["OK"]
+    ):
+        return to_string(response_json[RETURN_KEY], GHSReturnValue), None
+    return (
+        to_string(response_json[RETURN_KEY], GHSReturnValue),
+        response_json["SweepCountStatus"]
+    )
+
+def set_sweep_count_status(
+    con_handle: ConnectionHandler,
+    sweep_count_status: int,
+) -> str:
+    """Set the mainframe sweep count status
+
+    *The system needs to be idle before calling this function.*
+
+    *ReadWrite - This method will only process requests from the
+    connected client with the most privileges order (Privileges
+    order: 1- Perception, 2- GenDaq, 3- Other)*
+
+    Args:
+        * sweep count status - sweep count enable/disable
+
+    Returns:
+        * GHSReturnValue - API return values
+    """
+    SweepCountStatus_dict = {
+        "SweepCountStatus": sweep_count_status,
+    }
+
+    if  not sweep_count_status:
+        return "NullPtrArgument"
+
+    if isinstance(sweep_count_status, int):
+        pass
+
+    else:
+        return "InvalidDataType"
+    
+    response_json = con_handle.send_request_wait_response(
+        "SetSweepCountStatus", SweepCountStatus_dict
+    )
+
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+
 def get_trigger_arm_enabled(
     con_handle: ConnectionHandler,
 ) -> tuple[str, int | None]:

@@ -40,7 +40,7 @@ sys.path.append(os.path.join(parentdir, "src"))
 
 from ghsapi import connection, ghsapi_states, trigger_api, ghsapi
 
-IP_ADDRESS = "localhost"
+IP_ADDRESS = "10.96.129.129"
 PORT_NO = 8006
 
 
@@ -53,15 +53,17 @@ class TestTrigger(unittest.TestCase):
     get_trigger_api_list = [("test_get_start_data_recording",trigger_api.get_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
                         ("test_get_stop_data_recording",trigger_api.get_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_get_number_of_mainframe_sweeps",trigger_api.get_number_of_mainframe_sweeps,"Count",1,None),
+                        ("test_get_sweep_count_status",trigger_api.get_sweep_count_status,"SweepCountStatus",1,None),
                         ("test_get_trigger_arm_enabled",trigger_api.get_trigger_arm_enabled,"Enable",1,None),
                         ("test_get_external_trigger_mode",trigger_api.get_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
                         ("test_get_external_minimum_pulse_width",trigger_api.get_external_minimum_pulse_width,"DebounceIn","DeBounceFilterTime_2",None),
                         ("test_get_sweep_length",trigger_api.get_sweep_length,"SweepLength",3,"A"),
                         ("test_get_trigger_position",trigger_api.get_trigger_position,"TriggerPosition",6,"A"),
                         ("test_get_continuous_leadout_time",trigger_api.get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
+    set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"StartMethod","StartDataRecording_WaitForTriggerToMemory",None),
                         ("test_set_stop_data_recording",trigger_api.set_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_set_number_of_mainframe_sweeps",trigger_api.set_number_of_mainframe_sweeps,"Count",1,None),
+                        ("test_set_sweep_count_status",trigger_api.set_sweep_count_status,"SweepCountStatus",1,None),
                         ("test_set_trigger_arm_enabled",trigger_api.set_trigger_arm_enabled,"Enable",1,None),
                         ("test_set_sweep_length",trigger_api.set_sweep_length,"SweepLength",3,"A"),
                         ("test_set_trigger_position",trigger_api.set_trigger_position,"TriggerPosition",6,"A"),

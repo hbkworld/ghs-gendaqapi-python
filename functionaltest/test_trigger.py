@@ -49,15 +49,17 @@ class TestTrigger(unittest.TestCase):
     get_trigger_api_list = [("get_start_data_recording",gen.ghs_get_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
                         ("get_stop_data_recording",gen.ghs_get_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("get_number_of_mainframe_sweeps",gen.ghs_get_number_of_mainframe_sweeps,"Count",1,None),
+                        ("get_sweep_count_status",gen.ghs_get_sweep_count_status,"SweepCountStatus",1,None),
                         ("get_trigger_arm_enabled",gen.ghs_get_trigger_arm_enabled,"Enable",1,None),
                         ("get_external_trigger_mode",gen.ghs_get_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
                         ("get_external_minimum_pulse_width",gen.ghs_get_external_minimum_pulse_width,"DebounceIn","DeBounceFilterTime_2",None),
                         ("get_sweep_length",gen.ghs_get_sweep_length,"SweepLength",2,"A"),
                         ("get_trigger_position",gen.ghs_get_trigger_position,"TriggerPosition",6,"A"),
                         ("get_continuous_leadout_time",gen.ghs_get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"StartMethod",1,None),
+    set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"StartMethod",3,None),
                         #("set_stop_data_recording",gen.ghs_set_stop_data_recording,"StopMethod",3,None),
                         ("set_number_of_mainframe_sweeps",gen.ghs_set_number_of_mainframe_sweeps,"Count",1,None),
+                        ("set_sweep_count_status",gen.ghs_set_sweep_count_status,"SweepCountStatus",1,None),
                         ("set_trigger_arm_enabled",gen.ghs_set_trigger_arm_enabled,"Enable",1,None),
                         ("set_sweep_length",gen.ghs_set_sweep_length,"SweepLength",4,"A"),
                         ("set_trigger_position",gen.ghs_set_trigger_position,"TriggerPosition",6,"A"),
@@ -121,7 +123,7 @@ class TestTrigger(unittest.TestCase):
                 
     def test_stop_data_recording(self):
         #gen = ghsapi.GHS()
-        return_var = self.gen.ghs_set_stop_data_recording(1)
+        return_var = self.gen.ghs_set_stop_data_recording(2)
         self.assertEqual(
                 return_var,
                 "OK",
@@ -232,6 +234,25 @@ class TestTrigger(unittest.TestCase):
                 return_var,
                 "OK",
                 f"2 Failed on get_number_of_mainframe_sweeps\n",
+            )
+
+    def test_sweep_count_status_InvalidDataType(self):
+            return_var = self.gen.ghs_set_sweep_count_status("1") 
+            self.assertEqual(
+                    return_var,
+                    "InvalidDataType",
+                    f"Failed on setting Invalid Data Type\n",
+                )
+            return_var, sweep_count_status = self.gen.ghs_get_sweep_count_status()
+            self.assertEqual(isinstance(sweep_count_status, int),
+                True,
+                f"1 Failed on get_sweep_count_status\n",
+                )
+            
+            self.assertEqual(
+                return_var,
+                "OK",
+                f"2 Failed on get_sweep_count_status\n",
             )
             
     def test_trigger_arm_enabled_NullPtr(self):

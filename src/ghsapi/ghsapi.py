@@ -240,7 +240,16 @@ class GHS:
         """
 
         return _acquisition.get_acquisition_time(self._con_handle)
+    
+    def ghs_get_mainframe_time(self) -> tuple[str, int | None, int | None, float | None]:
+        """Retrieves the current mainframe time 
 
+        Returns:
+            * GHSReturnValue - API return status
+            * Yar, Day, Time - The time in seconds.
+        """
+
+        return _mainframe.get_mainframe_time(self._con_handle)
     # Mainframe APIs
 
     def ghs_identify(self, identity_flag: bool) -> str:

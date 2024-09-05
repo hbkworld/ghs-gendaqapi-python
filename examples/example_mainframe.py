@@ -37,7 +37,7 @@ sys.path.append(parentdir)
 
 from src.ghsapi import ghsapi
 
-IP_ADDRESS = "localhost"
+IP_ADDRESS = "10.96.129.195"
 PORT_NO = 8006
 
 
@@ -117,6 +117,18 @@ def main():
         Mainframe name: {name}\
         Serial no.: {serial}\
         Firmware version: {version}"
+    )
+    #get mainframe time
+    return_var, year, day, sec = gen.ghs_get_mainframe_time()
+    print(
+        f"GHSGetMainframeTime - Year:{year} Days:{day} Secs:{sec}\
+        Return Status: {return_var}"
+    )
+    #set mainframe time
+    return_var = gen.ghs_set_mainframe_time(year,day,sec)
+    print(
+        f"GHSSetMainframeTime - Year:{year} Days:{day} Secs:{sec}\
+        Return Status: {return_var}"
     )
 
     # Enable & diable identify

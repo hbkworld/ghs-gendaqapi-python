@@ -366,6 +366,77 @@ class TestMainframeAPI(unittest.TestCase):
                     "get_user_mode failure response test failed.",
                 )
 
+def test_get_mainframe_time(self):
+        """Test get_mainframe_time api with success response"""
+
+        with patch(
+            "test_connection_handler.connection.ConnectionHandler.connection_establish"
+        ) as mock_con_est:
+            mock_con_est.return_value = self.GHSReturnValue["OK"]
+
+            with patch(
+                "test_connection_handler.connection.ConnectionHandler.send_request_wait_response"
+            ) as mock_req_ros:
+                mock_req_ros.return_value = {
+                    "AbsoluteTimeYear": ABS_TIME_Y,
+                    "AbsoluteTimeDay": ABS_TIME_D,
+                    "AbsoluteTimeSeconds": ABS_TIME_S,
+                    self.RETURN_KEY: self.GHSReturnValue["OK"],
+                }
+                self.assertEqual(
+                    mainframe_api.get_mainframe_time(
+                        self.con_handle
+                    ),
+                    ("OK", ABS_TIME_Y, ABS_TIME_D, ABS_TIME_S),
+                    "get_mainframe_time success response test failed.",
+                )
+
+    def test_get_mainframe_time_neg(self):
+        """Test get_mainframe_time api with failure response"""
+
+        with patch(
+            "test_connection_handler.connection.ConnectionHandler.connection_establish"
+        ) as mock_con_est:
+            mock_con_est.return_value = self.GHSReturnValue["OK"]
+
+            with patch(
+                "test_connection_handler.connection.ConnectionHandler.send_request_wait_response"
+            ) as mock_req_ros:
+                mock_req_ros.return_value = {
+                    "AbsoluteTimeYear": ABS_TIME_Y,
+                    "AbsoluteTimeDay": ABS_TIME_D,
+                    "AbsoluteTimeSeconds": ABS_TIME_S,
+                    self.RETURN_KEY: self.GHSReturnValue["NOK"],
+                }
+                self.assertEqual(
+                    mainframe_api.get_mainframe_time(
+                        self.con_handle
+                    ),
+                    ("NOK", None, None, None),
+                    "get_mainframe_time failure response test failed.",
+                )
+
+                mock_req_ros.return_value = {
+                    self.RETURN_KEY: self.GHSReturnValue["NOK"],
+                }
+                self.assertEqual(
+                    mainframe_api.get_acquisition_start_time(
+                        self.con_handle
+                    ),
+                    ("NOK", None, None, None),
+                    "get_mainframe_time failure response test failed.",
+                )
+
+                mock_req_ros.return_value = {
+                    self.RETURN_KEY: self.GHSReturnValue["OK"],
+                }
+                self.assertEqual(
+                    mainframe_api.get_mainframe_time(
+                        self.con_handle
+                    ),
+                    ("OK", None, None, None),
+                    "get_mainframe_time failure response test failed.",
+                )
 
 if __name__ == "__main__":
     unittest.main(

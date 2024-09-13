@@ -339,6 +339,43 @@ class GHS:
 
         return _mainframe.get_mainframe_info(self._con_handle)
 
+    def ghs_get_mainframe_time(
+        self,
+    ) -> tuple[str, int | None, int | None, float | None]:
+        """Determine the absolute time of the mainframe.
+
+        Returns:
+            * GHSReturnValue - API return status
+            * UtcYear - The Utc Year of the mainframe
+            * UtcDay - The Day of the mainframe
+            * UtcTime - The Utc time of the mainframe
+        """
+        return _mainframe.get_mainframe_time(self._con_handle)
+
+    def ghs_set_mainframe_time(
+        self,
+        utc_year: int,
+        utc_day: int,
+        utc_time: float,
+    ) -> str:
+        """Set the mainframe time
+
+        Args:
+            utc_year: The utc year
+            utc_day: The utc day
+            utc_time : The utc Time
+
+        Returns:
+            * GHSReturnValue - API return status
+        """
+
+        return _mainframe.set_mainframe_time(
+            self._con_handle,
+            utc_year,
+            utc_day,
+            utc_time,
+        )
+
     # Manage recordings APIs
 
     def ghs_delete_all_recordings(self) -> str:

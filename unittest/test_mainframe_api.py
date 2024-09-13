@@ -38,6 +38,10 @@ sys.path.append(os.path.join(parentdir, "src"))
 
 from ghsapi import connection, ghsapi_states, mainframe_api
 
+ACQ_TIME = 3000.23
+ABS_TIME_Y = 2021
+ABS_TIME_D = 326
+ABS_TIME_S = 3000.23
 
 class TestMainframeAPI(unittest.TestCase):
     """Mainframe API unit test."""
@@ -366,7 +370,7 @@ class TestMainframeAPI(unittest.TestCase):
                     "get_user_mode failure response test failed.",
                 )
 
-def test_get_mainframe_time(self):
+    def test_get_mainframe_time(self):
         """Test get_mainframe_time api with success response"""
 
         with patch(
@@ -420,7 +424,7 @@ def test_get_mainframe_time(self):
                     self.RETURN_KEY: self.GHSReturnValue["NOK"],
                 }
                 self.assertEqual(
-                    mainframe_api.get_acquisition_start_time(
+                    mainframe_api.get_mainframe_time(
                         self.con_handle
                     ),
                     ("NOK", None, None, None),

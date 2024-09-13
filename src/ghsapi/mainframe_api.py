@@ -139,7 +139,9 @@ def set_mainframe_time(
         "AbsoluteTimeDay": utcDay,
         "AbsoluteTimeSeconds":utcTime,
         }
-
+    if not utcYear or not utcDay or not utcTime:
+        return "NullPtrArgument"
+    
     if isinstance(utcYear, int) and isinstance(utcDay, int) and isinstance(utcTime, float):
         pass
     else:

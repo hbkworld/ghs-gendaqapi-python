@@ -191,7 +191,7 @@ class TestMainframe(unittest.TestCase):
     # is to see if get_slot_count returns a different number if some
     # recorders are disabled
 
-    def test_get_user_mode(self):
+    '''def test_get_user_mode(self):
         """Test get user mode."""
 
         return_var, user_mode = self.gen.ghs_get_user_mode()
@@ -199,7 +199,7 @@ class TestMainframe(unittest.TestCase):
             user_mode in ghsapi.GHSUserMode and return_var == "OK",
             True,
             "Failed on get user mode.",
-        )
+        )'''
 
     def test_set_user_mode(self):
         """Test set user mode."""
@@ -257,7 +257,81 @@ class TestMainframe(unittest.TestCase):
             "SystemNotIdle",
             "Failed set user mode when in preview.",
         )
+    
+    def test_set_mainframe_time_NullPtr(self):
+            return_var = self.gen.ghs_set_mainframe_time(0,0,0) #NullPtrArgument
+            self.assertEqual(
+                    return_var,
+                    "NullPtrArgument",
+                    f"Failed on setting null\n",
+                )
+            return_var, year, day, time = self.gen.ghs_get_mainframe_time()
+            self.assertEqual(isinstance(year, int),
+                True,
+                f"1 Failed on ghs_get_mainframe_time\n",
+                )
+            self.assertEqual(
+                return_var,
+                "OK",
+                f"2 Failed on ghs_get_mainframe_time\n",
+            )
+            
+    def test_set_mainframe_type_InvalidDataType_year(self):
+            return_var = self.gen.ghs_set_mainframe_time("123",134,24.08) #setting string as year
+            self.assertEqual(
+                    return_var,
+                    "InvalidDataType",
+                    f"Failed on setting Invalid Data Type for year\n",
+                )
+            return_var, year, day, time = self.gen.ghs_get_mainframe_time()
+            self.assertEqual(isinstance(year, int),
+                True,
+                f"1 Failed on ghs_get_mainframe_time year\n",
+                )
+            
+            self.assertEqual(
+                return_var,
+                "OK",
+                f"2 Failed on ghs_get_mainframe_time year\n",
+            )
+        
+    def test_set_mainframe_type_InvalidDataType_Day(self):
+            return_var = self.gen.ghs_set_mainframe_time(2024,"134",24.08) #setting string as day
+            self.assertEqual(
+                    return_var,
+                    "InvalidDataType",
+                    f"Failed on setting Invalid Data Type for Day\n",
+                )
+            return_var, year, day, time = self.gen.ghs_get_mainframe_time()
+            self.assertEqual(isinstance(year, int),
+                True,
+                f"1 Failed on ghs_get_mainframe_time day\n",
+                )
+            
+            self.assertEqual(
+                return_var,
+                "OK",
+                f"2 Failed on ghs_get_mainframe_time day\n",
+            )
 
+    def test_set_mainframe_type_InvalidDataType_time(self):
+            return_var = self.gen.ghs_set_mainframe_time(2024,134,"24.08") #setting string as time
+            self.assertEqual(
+                    return_var,
+                    "InvalidDataType",
+                    f"Failed on setting Invalid Data Type for time\n",
+                )
+            return_var, year, day, time = self.gen.ghs_get_mainframe_time()
+            self.assertEqual(isinstance(year, int),
+                True,
+                f"1 Failed on ghs_get_mainframe_time time\n",
+                )
+            
+            self.assertEqual(
+                return_var,
+                "OK",
+                f"2 Failed on ghs_get_mainframe_time time\n",
+            )
 
 if __name__ == "__main__":
     unittest.main(

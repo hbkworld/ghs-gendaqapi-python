@@ -191,7 +191,7 @@ class TestMainframe(unittest.TestCase):
     # is to see if get_slot_count returns a different number if some
     # recorders are disabled
 
-    '''def test_get_user_mode(self):
+    def test_get_user_mode(self):
         """Test get user mode."""
 
         return_var, user_mode = self.gen.ghs_get_user_mode()
@@ -199,7 +199,7 @@ class TestMainframe(unittest.TestCase):
             user_mode in ghsapi.GHSUserMode and return_var == "OK",
             True,
             "Failed on get user mode.",
-        )'''
+        )
 
     def test_set_user_mode(self):
         """Test set user mode."""

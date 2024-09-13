@@ -37,7 +37,7 @@ sys.path.append(parentdir)
 
 from src.ghsapi import ghsapi
 
-IP_ADDRESS = "10.96.129.81"
+IP_ADDRESS = "localhost"
 PORT_NO = 8006
 
 
@@ -57,15 +57,15 @@ def main():
     print(f"GHSConnect - Return Status: {return_var}")
 
     # Get total and free disk size.
-    #return_var, total, available = gen.ghs_get_disk_space()
-    #if return_var != "OK":
-    #    print(f"Failed on GHSGetDiskSpace. Return Status: {return_var}")
-    #    sys.exit()
-    #print(
-    #    f"GHSGetDiskSpace - Return Status: {return_var}\
-    #    Total disk space: {total}\
-    #    Available disk space: {available}"
-    #)
+    return_var, total, available = gen.ghs_get_disk_space()
+    if return_var != "OK":
+        print(f"Failed on GHSGetDiskSpace. Return Status: {return_var}")
+        sys.exit()
+    print(
+        f"GHSGetDiskSpace - Return Status: {return_var}\
+        Total disk space: {total}\
+        Available disk space: {available}"
+    )
 
     # Get slot count.
     return_var, slot_count = gen.ghs_get_slot_count()

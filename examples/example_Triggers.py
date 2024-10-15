@@ -57,12 +57,12 @@ def main():
 
     # Set Start Data Recording
     #return_var = gen.ghs_set_start_data_recording("A","StartDataRecording_OnStartOfAcquisition")
-    return_var = gen.ghs_set_start_data_recording(3)
+    """ return_var = gen.ghs_set_start_data_recording(3)
     if return_var != "OK":
         print(f"Failed on GHSSetStartDataRecording. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetStartDataRecording - Return Status: {return_var}")
-
+    """
     # Get start data Recording
     return_var, start_data_recording = gen.ghs_get_start_data_recording()
     if return_var != "OK":
@@ -73,13 +73,13 @@ def main():
     )
 
     # Set Stop Data Recording
-    return_var = gen.ghs_set_stop_data_recording(2)
+    """ return_var = gen.ghs_set_stop_data_recording(2)
     #return_var = gen.ghs_set_stop_data_recording("A",2)
     if return_var != "OK":
         print(f"Failed on GHSSetStopDataRecording. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetStopDataRecording - Return Status: {return_var}")
-
+    """
     # Get stop data Recording
     return_var, stop_data_recording = gen.ghs_get_stop_data_recording()
     if return_var != "OK":
@@ -88,14 +88,14 @@ def main():
     print(f"GHSGetStopDataRecordingMethod - Return Status: {return_var}\
         stop_data_recording: {stop_data_recording}"
     )
-    
-  # Set Number of Mainframe sweeps
+    """
+    # Set Number of Mainframe sweeps
     return_var = gen.ghs_set_number_of_mainframe_sweeps(1)
     if return_var != "OK":
         print(f"Failed on GHSSetNumberofMainframeSweeps. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetNumberofMainframeSweeps - Return Status: {return_var}")
-
+    """
     # Get Number of Mainframe sweeps
     return_var, number_of_mainframe_sweep = gen.ghs_get_number_of_mainframe_sweeps()
     if return_var != "OK":
@@ -105,13 +105,13 @@ def main():
         number_of_mainframe_sweep: {number_of_mainframe_sweep}"
     )
     
-      # Set Number of Mainframe sweeps
-    return_var = gen.ghs_set_sweep_count_status(1)
+    # Set Number of Mainframe sweeps
+    """ return_var = gen.ghs_set_sweep_count_status(1)
     if return_var != "OK":
         print(f"Failed on GHSSetSweepCountStatus. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetSweepCountStatus - Return Status: {return_var}")
-
+    """
     # Get sweep count status
     return_var, sweep_count_status = gen.ghs_get_sweep_count_status()
     if return_var != "OK":
@@ -132,7 +132,7 @@ def main():
     )
 
     # Set arm trigger enable type
-    return_var = gen.ghs_set_trigger_arm_enabled(1)
+    """ return_var = gen.ghs_set_trigger_arm_enabled(1)
     if return_var != "OK":
         print(f"Failed on GHSSetTriggerArmEnabled. Return Status: {return_var}")
         sys.exit()
@@ -140,7 +140,7 @@ def main():
         f"GHSSetTriggerArmEnabled - Return Status: {return_var}\
         trigger_arm_enable: {trigger_arm_enable}"
     )
-    
+    """
     # Get External Trigger Mode
     return_var, external_trigger_mode = gen.ghs_get_external_trigger_mode()
     if return_var != "OK":
@@ -152,15 +152,15 @@ def main():
           external_trigger_mode: {external_trigger_mode}")
     
     # Set External Trigger Mode
-    return_var = gen.ghs_set_external_trigger_mode(2)
+    """ return_var = gen.ghs_set_external_trigger_mode(2)
     if return_var != "OK":
         print(
             f"Failed on GHSSetExternalTriggerMode. Return Status: {return_var}"
         )
         sys.exit()
     print(f"GHSSetExternalTriggerMode - Return Status: {return_var}")
-    
-        # Get External minimum Trigger pulse width
+    """
+    # Get External minimum Trigger pulse width
     return_var, external_min_pulse_width = gen.ghs_get_external_minimum_pulse_width()
     if return_var != "OK":
         print(
@@ -171,14 +171,14 @@ def main():
           external_min_pulse_width: {external_min_pulse_width}")
     
     # Set External minimum Trigger pulse width
-    return_var = gen.ghs_set_external_minimum_pulse_width(3)
+    """return_var = gen.ghs_set_external_minimum_pulse_width(3)
     if return_var != "OK":
         print(
             f"Failed on GHSSetDebounceFilterTime. Return Status: {return_var}"
         )
         sys.exit()
     print(f"GHSSetDebounceFilterTime - Return Status: {return_var}")
-
+    """
 
     # Determine the sweep length.
     return_var, sweep_length = gen.ghs_get_sweep_length("A")
@@ -194,12 +194,12 @@ def main():
       )
 
     # Set the sweep length.
-    return_var = gen.ghs_set_sweep_length("A",1)
+    """ return_var = gen.ghs_set_sweep_length("A",1)
     if return_var != "OK":
         print(f"Failed on GHSSetSweepLength. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetSweepLength - Return Status: {return_var}")
-
+    """
     # Determine the trigger position.
     return_var, trigger_position = gen.ghs_get_trigger_position("A")
     if return_var != "OK":
@@ -210,12 +210,12 @@ def main():
         trigger_position: {trigger_position}")
 
     # Set the trigger position.
-    return_var = gen.ghs_set_trigger_position("A", 1)
+    """ return_var = gen.ghs_set_trigger_position("A", 1)
     if return_var != "OK":
         print(f"Failed on GHSSetTriggerPosition. Return Status: {return_var}")
         sys.exit()
     print(f"GHSSetTriggerPosition - Return Status: {return_var}")
-
+    """
     # Determine the continuous_leadout_time.
     return_var, continuous_leadout_time = gen.ghs_get_continuous_leadout_time("A")
     if return_var != "OK":
@@ -227,12 +227,12 @@ def main():
     )
 
      # set the continuous_leadout_time.
-    return_var = gen.ghs_set_continuous_leadout_time("A", 23)
+    """ return_var = gen.ghs_set_continuous_leadout_time("A", 23)
     if return_var != "OK":
         print(f"Failed on GHSSetContinuousLeadOutTime return Status: {return_var}")
         sys.exit()
     print(f"GHSSetContinuousLeadOutTime - Return Status: {return_var}")
-
+    """
     # Disconnect
     return_var = gen.ghs_disconnect()
     if return_var != "OK":

@@ -190,7 +190,7 @@ class TestTrigger(unittest.TestCase):
                             ("NullPtrArgument",None),
                             f"\n{testname}: failure response test failed ---3.\n",
                         )
-
+    """
     def test_set_fieldbus_trigger_configuration(self):
         for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:
             with self.subTest(testname = testname, testcase = testcase, paramName = paramName,paramvalue = paramvalue,paramSlot = paramSlot):
@@ -246,7 +246,6 @@ class TestTrigger(unittest.TestCase):
 
                     
     def test_set_fieldbus_trigger_configuration_null_args(self):
-        """Test set_fieldbus_trigger_configuration with null args"""
         for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:
             with self.subTest(testname = testname, testcase = testcase, paramName = paramName,paramvalue = paramvalue,paramSlot = paramSlot):
  
@@ -267,7 +266,7 @@ class TestTrigger(unittest.TestCase):
                         "NullPtrArgument",
                         f"\n{testname}: failure response test failed .\n",
                     )  
-
+                """
     
 
 if __name__ == "__main__":

@@ -50,6 +50,7 @@ class TestTrigger(unittest.TestCase):
     con_handle = connection.ConnectionHandler()
     GHSReturnValue = ghsapi_states.GHSReturnValue
     RETURN_KEY = ghsapi_states.RETURN_KEY
+    gen = ghsapi.GHS()
     get_trigger_api_list = [("test_get_start_data_recording",trigger_api.get_start_data_recording,"StartMethod","StartDataRecording_OnStartOfAcquisition",None),
                         ("test_get_stop_data_recording",trigger_api.get_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_get_number_of_mainframe_sweeps",trigger_api.get_number_of_mainframe_sweeps,"Count",1,None),
@@ -60,7 +61,9 @@ class TestTrigger(unittest.TestCase):
                         ("test_get_sweep_length",trigger_api.get_sweep_length,"SweepLength",3,"A"),
                         ("test_get_trigger_position",trigger_api.get_trigger_position,"TriggerPosition",6,"A"),
                         ("test_get_continuous_leadout_time",trigger_api.get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"StartMethod","StartDataRecording_WaitForTriggerToMemory",None),
+
+    # masking as it is under development 
+    """set_trigger_api_list =  [("test_set_start_data_recording",trigger_api.set_start_data_recording,"StartMethod","StartDataRecording_WaitForTriggerToMemory",None),
                         ("test_set_stop_data_recording",trigger_api.set_stop_data_recording,"StopMethod","StopDataRecording_FirstTrigger",None),
                         ("test_set_number_of_mainframe_sweeps",trigger_api.set_number_of_mainframe_sweeps,"Count",1,None),
                         ("test_set_sweep_count_status",trigger_api.set_sweep_count_status,"SweepCountStatus",1,None),
@@ -70,9 +73,7 @@ class TestTrigger(unittest.TestCase):
                         ("test_set_continuous_leadout_time",trigger_api.set_continuous_leadout_time,"ContinuousLeadOutTime",2,"A"),
                         ("test_set_external_trigger_mode",trigger_api.set_external_trigger_mode,"Mode","ExternalTriggerInMode_RisingEdge",None),
                         ("test_set_external_minimum_pulse_width",trigger_api.set_external_minimum_pulse_width,"DebounceIn","DeBounceFilterTime_2",None),]
-    
-    gen = ghsapi.GHS()
-
+    """
     def setUp(self):
         # runs before each test
         pass
@@ -190,6 +191,7 @@ class TestTrigger(unittest.TestCase):
                             ("NullPtrArgument",None),
                             f"\n{testname}: failure response test failed ---3.\n",
                         )
+    # masking as it is under development 
     """
     def test_set_fieldbus_trigger_configuration(self):
         for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:

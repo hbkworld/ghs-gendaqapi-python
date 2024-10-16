@@ -56,7 +56,7 @@ class TestTrigger(unittest.TestCase):
                         ("get_sweep_length",gen.ghs_get_sweep_length,"SweepLength",2,"A"),
                         ("get_trigger_position",gen.ghs_get_trigger_position,"TriggerPosition",6,"A"),
                         ("get_continuous_leadout_time",gen.ghs_get_continuous_leadout_time,"ContinuousLeadOutTime",5,"A"),]
-    set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"StartMethod",3,None),
+    """ set_trigger_api_list =  [("set_start_data_recording",gen.ghs_set_start_data_recording,"StartMethod",3,None),
                         #("set_stop_data_recording",gen.ghs_set_stop_data_recording,"StopMethod",3,None),
                         ("set_number_of_mainframe_sweeps",gen.ghs_set_number_of_mainframe_sweeps,"Count",1,None),
                         ("set_sweep_count_status",gen.ghs_set_sweep_count_status,"SweepCountStatus",1,None),
@@ -65,7 +65,7 @@ class TestTrigger(unittest.TestCase):
                         ("set_trigger_position",gen.ghs_set_trigger_position,"TriggerPosition",6,"A"),
                         ("set_continuous_leadout_time",gen.ghs_set_continuous_leadout_time,"ContinuousLeadOutTime",2,"A"),
                         ("set_external_trigger_mode",gen.ghs_set_external_trigger_mode,"Mode",1,None), #ExternalTriggerInMode_RisingEdge
-                        ("set_external_minimum_pulse_width",gen.ghs_set_external_minimum_pulse_width,"DebounceIn",2,None),] #"DeBounceFilterTime_2"
+                        ("set_external_minimum_pulse_width",gen.ghs_set_external_minimum_pulse_width,"DebounceIn",2,None),] #"DeBounceFilterTime_2" """
     
     @classmethod
     def setUpClass(cls):
@@ -84,6 +84,8 @@ class TestTrigger(unittest.TestCase):
     def tearDown(self):
         # runs after each test
         time.sleep(2)
+
+    # masking as it is under development    
     """       
     def test_set_fieldbus_trigger_configuration(self):
         for testname,testcase,paramName,paramvalue,paramSlot in self.set_trigger_api_list:
@@ -120,6 +122,7 @@ class TestTrigger(unittest.TestCase):
                     "OK",
                     f"2 Failed on {testname}\n",
                 )
+    # masking as it is under development    
     """            
     def test_stop_data_recording(self):
         #gen = ghsapi.GHS()

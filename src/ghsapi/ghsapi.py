@@ -1679,12 +1679,13 @@ class GHS:
             lower_value,
             upper_value,
         )
-        
-    def ghs_set_start_data_recording(
+
+    # masking as it is under development   
+    """ def ghs_set_start_data_recording(
         self,
         start_data_recording: str | int,
-    ) -> str:
-        """Set the start data recording.
+    ) -> str: """
+    """Set the start data recording.
 
         *ReadWrite - This method will only process requests from the
         connected client with the most privileges order (Privileges
@@ -1697,10 +1698,10 @@ class GHS:
         Returns:
             * GHSReturnValue - API return values
         """
-        return _trigger.set_start_data_recording(
+    """return _trigger.set_start_data_recording(
             self._con_handle,
             start_data_recording,
-        )
+        )"""
 
     def ghs_get_start_data_recording(
         self, 
@@ -1718,12 +1719,12 @@ class GHS:
             self._con_handle)
         
         
-
-    def ghs_set_stop_data_recording(
+    # masking as it is under development   
+    """def ghs_set_stop_data_recording(
         self,
         stop_data_recording: str | int,
-    ) -> str:
-        """Set the stop data recording.
+    ) -> str:"""
+    """Set the stop data recording.
 
         *ReadWrite - This method will only process requests from the
         connected client with the most privileges order (Privileges
@@ -1735,10 +1736,10 @@ class GHS:
         Returns:
             * GHSReturnValue - API return values
         """
-        return _trigger.set_stop_data_recording(
+    """return _trigger.set_stop_data_recording(
             self._con_handle,
-            stop_data_recording,
-        )
+            stop_data_recording,"
+        )"""
 
     def ghs_get_stop_data_recording(
         self, 
@@ -1756,13 +1757,12 @@ class GHS:
         return _trigger.get_stop_data_recording(
             self._con_handle)
         
-        
-    
-    def ghs_set_trigger_arm_enabled(
+    # masking as it is under development   
+    """def ghs_set_trigger_arm_enabled(
         self,
         trigger_arm_enable: bool,
-    ) -> str:
-        """Set the trigger arm enable.
+    ) -> str:"""
+    """Set the trigger arm enable.
 
         *The system needs to be idle before calling this function.*
 
@@ -1777,10 +1777,10 @@ class GHS:
             * GHSReturnValue - API return values
         """
 
-        return _trigger.set_trigger_arm_enabled(
+    """return _trigger.set_trigger_arm_enabled(
             self._con_handle,
             trigger_arm_enable,
-        )
+        )"""
 
     def ghs_get_trigger_arm_enabled(
         self, 
@@ -1797,12 +1797,13 @@ class GHS:
 
         return _trigger.get_trigger_arm_enabled(
             self._con_handle)
-        
-    def ghs_set_external_trigger_mode(
+    
+    # masking as it is under development     
+    """def ghs_set_external_trigger_mode(
         self,
         external_trigger_mode: int,
-    ) -> str:
-        """Set the external trigger mode.
+    ) -> str: """
+    """Set the external trigger mode.
 
         *The system needs to be idle before calling this function.*
 
@@ -1815,12 +1816,11 @@ class GHS:
 
         Returns:
             * GHSReturnValue - API return value
-        """
-
-        return _trigger.set_external_trigger_mode(
+    """
+    """return _trigger.set_external_trigger_mode(
             self._con_handle,
             external_trigger_mode,
-        )
+        ) """
 
     def ghs_get_external_trigger_mode(
         self, 
@@ -1838,12 +1838,12 @@ class GHS:
         return _trigger.get_external_trigger_mode(
             self._con_handle)
         
-   
-    def ghs_set_number_of_mainframe_sweeps(
+    # masking as it is under development 
+    """ def ghs_set_number_of_mainframe_sweeps(
         self,
         number_of_mainframe_sweeps: int,
-    ) -> str:
-        """Set the mainframe sweeps.
+    ) -> str: """
+    """Set the mainframe sweeps.
 
         *The system needs to be idle before calling this function.*
 
@@ -1856,12 +1856,12 @@ class GHS:
 
         Returns:
             * GHSReturnValue - API return values
-        """
+    """
 
-        return _trigger.set_number_of_mainframe_sweeps(
+    """return _trigger.set_number_of_mainframe_sweeps(
             self._con_handle,
             number_of_mainframe_sweeps,
-        )
+    )"""
 
     def ghs_get_number_of_mainframe_sweeps(
         self, 
@@ -1919,12 +1919,12 @@ class GHS:
         return _trigger.get_sweep_count_status(
             self._con_handle)
         
-   
-    def ghs_set_external_minimum_pulse_width(
+    # masking as it is under development 
+    """def ghs_set_external_minimum_pulse_width(
         self,
         number_of_mainframe_sweeps: int,
-    ) -> str:
-        """Set the external minimum pulse width or debounce filter time.
+    ) -> str: """
+    """Set the external minimum pulse width or debounce filter time.
 
         *The system needs to be idle before calling this function.*
 
@@ -1938,10 +1938,10 @@ class GHS:
             * GHSReturnValue - API return values
         """
 
-        return _trigger.set_external_minimum_pulse_width(
+    """ return _trigger.set_external_minimum_pulse_width(
             self._con_handle,
             number_of_mainframe_sweeps,
-        )
+        ) """
 
     def ghs_get_external_minimum_pulse_width(
         self, 
@@ -1958,13 +1958,14 @@ class GHS:
 
         return _trigger.get_external_minimum_pulse_width(
             self._con_handle)
-        
-    def ghs_set_sweep_length(
+
+    # masking as it is under development     
+    """ def ghs_set_sweep_length(
         self,
         slot_id: int,
         sweep_length: int,
-    ) -> str:
-        """Set the sweep length.
+    ) -> str: """
+    """Set the sweep length.
 
         *The system needs to be idle before calling this function.*
 
@@ -1979,11 +1980,11 @@ class GHS:
         Returns:
             * GHSReturnValue - API return values
         """
-        return _trigger.set_sweep_length(
+    """ return _trigger.set_sweep_length(
             self._con_handle,
             slot_id,
             sweep_length,
-        )
+        ) """
 
     def ghs_get_sweep_length(
         self, slot_id,
@@ -2005,13 +2006,13 @@ class GHS:
             self._con_handle,
             slot_id)   
 
-
-    def ghs_set_trigger_position(
+    # masking as it is under development 
+    """def ghs_set_trigger_position(
         self,
         slot_id: int,
         trigger_position: int,
-    ) -> str:
-        """Set the trigger position.
+    ) -> str: """
+    """Set the trigger position.
 
         *The system needs to be idle before calling this function.*
 
@@ -2030,11 +2031,11 @@ class GHS:
             * GHSReturnValue - API return values
         """
 
-        return _trigger.set_trigger_position(
+    """ return _trigger.set_trigger_position(
             self._con_handle,
             slot_id,
             trigger_position,
-        )
+        ) """
 
     def ghs_get_trigger_position(
         self, slot_id,
@@ -2055,13 +2056,14 @@ class GHS:
         return _trigger.get_trigger_position(
             self._con_handle,
             slot_id)   
-        
-    def ghs_set_continuous_leadout_time(
+    
+    # masking as it is under development      
+    """def ghs_set_continuous_leadout_time(
         self,
         slot_id: int,
         continuous_leadout_time: int,
-    ) -> str:
-        """Set the continuous lead out time.
+    ) -> str:"""
+    """Set the continuous lead out time.
 
         *The system needs to be idle before calling this function.*
 
@@ -2080,11 +2082,11 @@ class GHS:
             * GHSReturnValue - API return values
         """
 
-        return _trigger.set_continuous_leadout_time(
+    """ return _trigger.set_continuous_leadout_time(
             self._con_handle,
             slot_id,
             continuous_leadout_time,
-        )
+        )"""
 
     def ghs_get_continuous_leadout_time(
         self, slot_id,

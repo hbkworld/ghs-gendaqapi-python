@@ -60,12 +60,14 @@ def get_start_data_recording(
         to_string(response_json[RETURN_KEY], GHSReturnValue),
         response_json["StartMethod"]
     )
-
+    # masking as it is under development  
+"""
 def set_start_data_recording(
     con_handle: ConnectionHandler,
     start_data_recording: str | int,
-) -> str:
-    """Set the start data recording.
+) -> str:"""
+
+"""Set the start data recording.
 
     *ReadWrite - This method will only process requests from the
     connected client with the most privileges order (Privileges
@@ -78,7 +80,7 @@ def set_start_data_recording(
     Returns:
         * GHSReturnValue - API return values
     """
-    start_data_recording_dict = {
+"""   start_data_recording_dict = {
         "StartMethod": start_data_recording,
     }
 
@@ -99,7 +101,7 @@ def set_start_data_recording(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
-
+"""
 
 def get_stop_data_recording(
     con_handle: ConnectionHandler,
@@ -134,12 +136,14 @@ def get_stop_data_recording(
         to_string(response_json[RETURN_KEY], GHSReturnValue),
         response_json["StopMethod"]
     )
-    
+
+# masking as it is under development  
+"""    
 def set_stop_data_recording(
     con_handle: ConnectionHandler,
     stop_data_recording: str | int,
-) -> str:
-    """Set the stop data recording.
+) -> str:"""
+"""Set the stop data recording.
 
     *ReadWrite - This method will only process requests from the
     connected client with the most privileges order (Privileges
@@ -151,6 +155,7 @@ def set_stop_data_recording(
     Returns:
         * GHSReturnValue - API return values
     """
+"""
     stop_data_recording_dict = {
         "StopMethod": stop_data_recording,
     }
@@ -172,6 +177,7 @@ def set_stop_data_recording(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
+"""
 
 def get_number_of_mainframe_sweeps(
     con_handle: ConnectionHandler,
@@ -198,11 +204,13 @@ def get_number_of_mainframe_sweeps(
         response_json["Count"]
     )
 
+# masking as it is under development 
+""" 
 def set_number_of_mainframe_sweeps(
     con_handle: ConnectionHandler,
     number_of_Mainframe_sweeps: int,
-) -> str:
-    """Set the mainframe sweeps.
+) -> str:"""
+"""Set the mainframe sweeps.
 
     *The system needs to be idle before calling this function.*
 
@@ -216,7 +224,7 @@ def set_number_of_mainframe_sweeps(
     Returns:
         * GHSReturnValue - API return values
     """
-    Mainframesweeps_dict = {
+"""Mainframesweeps_dict = {
         "Count": number_of_Mainframe_sweeps,
     }
 
@@ -235,6 +243,7 @@ def set_number_of_mainframe_sweeps(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
+"""
 
 def get_sweep_count_status(
     con_handle: ConnectionHandler,
@@ -322,12 +331,14 @@ def get_trigger_arm_enabled(
         to_string(response_json[RETURN_KEY], GHSReturnValue),
         response_json["Enable"]
     )
-
+    
+# masking as it is under development
+"""  
 def set_trigger_arm_enabled(
     con_handle: ConnectionHandler,
     trigger_arm_enable: bool,
-) -> str:
-    """Set the trigger arm enable.
+) -> str:"""
+"""Set the trigger arm enable.
 
     *The system needs to be idle before calling this function.*
 
@@ -341,7 +352,7 @@ def set_trigger_arm_enabled(
     Returns:
         * GHSReturnValue - API return values
     """
-    trigger_arm_enable_dict = {
+"""trigger_arm_enable_dict = {
         "Enable": trigger_arm_enable,
     }
 
@@ -359,7 +370,7 @@ def set_trigger_arm_enabled(
         "SetTriggerArmEnabled", trigger_arm_enable_dict
     )
 
-    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)"""
 
 def get_external_trigger_mode(
     con_handle: ConnectionHandler,
@@ -386,11 +397,13 @@ def get_external_trigger_mode(
         response_json["Mode"]
     )
 
+# masking as it is under development
+"""  
 def set_external_trigger_mode(
     con_handle: ConnectionHandler,
     external_trigger_mode: str | int,
-) -> str:
-    """Set the external trigger mode.
+) -> str:"""
+"""Set the external trigger mode.
 
     *The system needs to be idle before calling this function.*
 
@@ -404,7 +417,7 @@ def set_external_trigger_mode(
     Returns:
         * GHSReturnValue - API return value
     """
-    external_trigger_mode_dict = {
+"""external_trigger_mode_dict = {
         "Mode": external_trigger_mode,
     }
 
@@ -421,7 +434,7 @@ def set_external_trigger_mode(
         "SetExternalTriggerMode", external_trigger_mode_dict
     )
 
-    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)"""
 
 def get_external_minimum_pulse_width(
     con_handle: ConnectionHandler,
@@ -448,11 +461,12 @@ def get_external_minimum_pulse_width(
         response_json["DebounceIn"]
     )
 
-def set_external_minimum_pulse_width(
+# masking as it is under development  
+"""def set_external_minimum_pulse_width(
     con_handle: ConnectionHandler,
     debounce_filter_time: str | int,
-) -> str:
-    """Set the external minimum pulse width or debounce filter time.
+) -> str:"""
+"""Set the external minimum pulse width or debounce filter time.
 
     *The system needs to be idle before calling this function.*
 
@@ -465,7 +479,7 @@ def set_external_minimum_pulse_width(
     Returns:
         * GHSReturnValue - API return values
     """
-    debounce_filter_time_dict = {
+"""debounce_filter_time_dict = {
         "DebounceIn": debounce_filter_time,
     }
 
@@ -484,7 +498,7 @@ def set_external_minimum_pulse_width(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
-
+"""
 
 def get_sweep_length(
     con_handle: ConnectionHandler,
@@ -518,13 +532,14 @@ def get_sweep_length(
         to_string(response_json[RETURN_KEY], GHSReturnValue),
         response_json["SweepLength"]
     )
-
+# masking as it is under development 
+""" 
 def set_sweep_length(
     con_handle: ConnectionHandler,
     slot_id: str,
     sweep_length: str | int,
-) -> str:
-    """Set the sweep length.
+) -> str:"""
+"""Set the sweep length.
 
     *The system needs to be idle before calling this function.*
 
@@ -539,6 +554,7 @@ def set_sweep_length(
     Returns:
         * GHSReturnValue - API return values
     """
+"""
     sweep_length_dict = {
         "SlotId":slot_id,
         "SweepLength": sweep_length,
@@ -558,7 +574,7 @@ def set_sweep_length(
     )
 
     return to_string(response_json[RETURN_KEY], GHSReturnValue)
-
+"""
 
 def get_trigger_position(
     con_handle: ConnectionHandler,
@@ -592,12 +608,13 @@ def get_trigger_position(
         response_json["TriggerPosition"]
     )
 
-def set_trigger_position(
+# masking as it is under development  
+"""def set_trigger_position(
     con_handle: ConnectionHandler,
     slot_id: str,
     trigger_position: str | int,
-) -> str:
-    """Set the trigger position.
+) -> str:"""
+"""Set the trigger position.
 
     *The system needs to be idle before calling this function.*
 
@@ -615,7 +632,7 @@ def set_trigger_position(
     Returns:
         * GHSReturnValue - API return values
     """
-    trigger_position_dict = {
+"""trigger_position_dict = {
         "SlotId":slot_id,
         "TriggerPosition": trigger_position,
     }
@@ -633,7 +650,7 @@ def set_trigger_position(
     response_json = con_handle.send_request_wait_response(
         "SetTriggerPosition", trigger_position_dict
     )
-    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)"""
 
 
 def get_continuous_leadout_time(
@@ -667,13 +684,13 @@ def get_continuous_leadout_time(
         to_string(response_json[RETURN_KEY], GHSReturnValue),
         response_json["ContinuousLeadOutTime"]
     )
-
-def set_continuous_leadout_time(
+# masking as it is under development  
+"""def set_continuous_leadout_time(
     con_handle: ConnectionHandler,
     slot_id: str,
     continuous_leadout_time: int,
-) -> str:
-    """Set the continuous lead out time.
+) -> str:"""
+"""Set the continuous lead out time.
 
     *The system needs to be idle before calling this function.*
 
@@ -691,7 +708,7 @@ def set_continuous_leadout_time(
     Returns:
         * GHSReturnValue - API return values
     """
-    continuous_leadout_time_dict = {
+"""continuous_leadout_time_dict = {
         "SlotId":slot_id,
         "ContinuousLeadOutTime": continuous_leadout_time,
     }
@@ -708,4 +725,4 @@ def set_continuous_leadout_time(
     response_json = con_handle.send_request_wait_response(
         "SetContinuousLeadOutTime", continuous_leadout_time_dict
     )
-    return to_string(response_json[RETURN_KEY], GHSReturnValue)
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)"""

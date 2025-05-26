@@ -39,6 +39,7 @@ from . import mainframe_api as _mainframe
 from . import manage_mainframe_settings as _manage_mainframe_settings
 from . import manage_recordings_api as _manage_recordings
 from . import recorder_api as _recorder
+from . import trigger_api as _trigger
 from .connection import ConnectionHandler
 from .ghsapi_states import (
     RETURN_KEY,
@@ -239,7 +240,16 @@ class GHS:
         """
 
         return _acquisition.get_acquisition_time(self._con_handle)
+    
+    def ghs_get_mainframe_time(self) -> tuple[str, int | None, int | None, float | None]:
+        """Retrieves the current mainframe time 
 
+        Returns:
+            * GHSReturnValue - API return status
+            * Yar, Day, Time - The time in seconds.
+        """
+
+        return _mainframe.get_mainframe_time(self._con_handle)
     # Mainframe APIs
 
     def ghs_identify(self, identity_flag: bool) -> str:
@@ -328,6 +338,43 @@ class GHS:
         """
 
         return _mainframe.get_mainframe_info(self._con_handle)
+
+    def ghs_get_mainframe_time(
+        self,
+    ) -> tuple[str, int | None, int | None, float | None]:
+        """Determine the absolute time of the mainframe.
+
+        Returns:
+            * GHSReturnValue - API return status
+            * UtcYear - The Utc Year of the mainframe
+            * UtcDay - The Day of the mainframe
+            * UtcTime - The Utc time of the mainframe
+        """
+        return _mainframe.get_mainframe_time(self._con_handle)
+
+    def ghs_set_mainframe_time(
+        self,
+        utc_year: int,
+        utc_day: int,
+        utc_time: float,
+    ) -> str:
+        """Set the mainframe time
+
+        Args:
+            utc_year: The utc year
+            utc_day: The utc day
+            utc_time : The utc Time
+
+        Returns:
+            * GHSReturnValue - API return status
+        """
+
+        return _mainframe.set_mainframe_time(
+            self._con_handle,
+            utc_year,
+            utc_day,
+            utc_time,
+        )
 
     # Manage recordings APIs
 
@@ -733,7 +780,10 @@ class GHS:
         )
 
     def ghs_get_channel_name(
-        self, slot_id: str, channel_index: int
+        self,
+        slot_id: str,
+        channel_index: int,
+        channel_type: str | int,
     ) -> tuple[str, int | None]:
         """Determine the name of a channel.
 
@@ -744,7 +794,8 @@ class GHS:
 
         Args:
             slot_id: The slot containing the recorder
-            channel_index: The zero-based index of the channel
+            channel_index: The one-based index of the specified channel type
+            channel_type: The specific channel type
 
         Returns:
             * GHSReturnValue - API return values
@@ -752,11 +803,15 @@ class GHS:
         """
 
         return _channel.get_channel_name(
-            self._con_handle, slot_id, channel_index
+            self._con_handle, slot_id, channel_index, channel_type
         )
 
     def ghs_set_channel_name(
-        self, slot_id: str, channel_index: int, channel_name: str
+        self,
+        slot_id: str,
+        channel_index: int,
+        channel_type: str | int,
+        channel_name: str
     ) -> str:
         """Set the name for a channel.
 
@@ -768,7 +823,8 @@ class GHS:
 
         Args:
             slot_id: The slot containing the recorder
-            channel_index: The zero-based index of the channel
+            channel_index: The one-based index of the specified channel type
+            channel_type: The specific channel type
             channel_name: The name of the channel
 
         Returns:
@@ -776,11 +832,14 @@ class GHS:
         """
 
         return _channel.set_channel_name(
-            self._con_handle, slot_id, channel_index, channel_name
+            self._con_handle, slot_id, channel_index, channel_type, channel_name
         )
 
     def ghs_get_channel_storage_enabled(
-        self, slot_id: str, channel_index: int
+        self,
+        slot_id: str,
+        channel_index: int,
+        channel_type: str | int,
     ) -> tuple[str, str | None]:
         """Determine if storage is enabled or disabled for a channel.
 
@@ -789,7 +848,8 @@ class GHS:
 
         Args:
             slot_id: The slot containing the recorder
-            channel_index: The zero-based index of the channel
+            channel_index: The one-based index of the channel
+            channel_type: The specific channel type
 
         Returns:
             * GHSReturnValue - API return values
@@ -797,13 +857,14 @@ class GHS:
         """
 
         return _channel.get_channel_storage_enabled(
-            self._con_handle, slot_id, channel_index
+            self._con_handle, slot_id, channel_index, channel_type
         )
 
     def ghs_set_channel_storage_enabled(
         self,
         slot_id: str,
         channel_index: int,
+        channel_type: str | int,
         enabled: str | int,
     ) -> str:
         """Enable or disable storage for a channel.
@@ -816,7 +877,8 @@ class GHS:
 
         Args:
             slot_id: The slot containing the recorder
-            channel_index: The zero-based index of the channel
+            channel_index: The one-based index of the channel
+            channel_type: The specific channel type
             enabled: The desired storage enabled status for the channel
 
         Returns:
@@ -824,11 +886,15 @@ class GHS:
         """
 
         return _channel.set_channel_storage_enabled(
-            self._con_handle, slot_id, channel_index, enabled
+            self._con_handle, slot_id, channel_index, channel_type, enabled
         )
 
     def ghs_cmd_zeroing(
-        self, slot_id: str, channel_index: int, ezeroing: str | int
+        self,
+        slot_id: str,
+        channel_index: int,
+        channel_type: str | int,
+        ezeroing: str | int
     ) -> str:
         """Perform zeroing in a channel.
 
@@ -839,7 +905,8 @@ class GHS:
 
         Args:
             slot_id: The slot containing the recorder
-            channel_index: The zero-based index of the channel
+            channel_index: The one-based index of the channel
+            channel_type: The specific channel type
             ezeroing: Zero / Unzero the specific channel
 
         Returns:
@@ -847,7 +914,7 @@ class GHS:
         """
 
         return _channel.cmd_zeroing(
-            self._con_handle, slot_id, channel_index, ezeroing
+            self._con_handle, slot_id, channel_index, channel_type, ezeroing
         )
 
     ## Analog Module
@@ -1612,3 +1679,432 @@ class GHS:
             lower_value,
             upper_value,
         )
+
+    # masking as it is under development   
+    """ def ghs_set_start_data_recording(
+        self,
+        start_data_recording: str | int,
+    ) -> str: """
+    """Set the start data recording.
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            slot_id: The slot containing the recorder
+            start_data_recording: data recording
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+    """return _trigger.set_start_data_recording(
+            self._con_handle,
+            start_data_recording,
+        )"""
+
+    def ghs_get_start_data_recording(
+        self, 
+     ) -> tuple[str, int | None]:
+        """Determine the start data recording.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * GHSStartDataRecording - Start Data Recording
+        """
+        return _trigger.get_start_data_recording(
+            self._con_handle)
+        
+        
+    # masking as it is under development   
+    """def ghs_set_stop_data_recording(
+        self,
+        stop_data_recording: str | int,
+    ) -> str:"""
+    """Set the stop data recording.
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * stop_data_recording: stop data recording
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+    """return _trigger.set_stop_data_recording(
+            self._con_handle,
+            stop_data_recording,"
+        )"""
+
+    def ghs_get_stop_data_recording(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the stop data recording.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+    
+        Returns:
+            * GHSReturnValue - API return values
+            * stop_data_recording - stop the data recording
+        """
+
+        return _trigger.get_stop_data_recording(
+            self._con_handle)
+        
+    # masking as it is under development   
+    """def ghs_set_trigger_arm_enabled(
+        self,
+        trigger_arm_enable: bool,
+    ) -> str:"""
+    """Set the trigger arm enable.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * trigger_arm_enabled: trigger arm enable
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+    """return _trigger.set_trigger_arm_enabled(
+            self._con_handle,
+            trigger_arm_enable,
+        )"""
+
+    def ghs_get_trigger_arm_enabled(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the trigger arm enable.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * trigger_arm_enabled: trigger arm enable
+        """
+
+        return _trigger.get_trigger_arm_enabled(
+            self._con_handle)
+    
+    # masking as it is under development     
+    """def ghs_set_external_trigger_mode(
+        self,
+        external_trigger_mode: int,
+    ) -> str: """
+    """Set the external trigger mode.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * external_trigger_mode: external trigger mode
+
+        Returns:
+            * GHSReturnValue - API return value
+    """
+    """return _trigger.set_external_trigger_mode(
+            self._con_handle,
+            external_trigger_mode,
+        ) """
+
+    def ghs_get_external_trigger_mode(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the external trigger mode.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * external_trigger_mode: external trigger mode
+        """
+
+        return _trigger.get_external_trigger_mode(
+            self._con_handle)
+        
+    # masking as it is under development 
+    """ def ghs_set_number_of_mainframe_sweeps(
+        self,
+        number_of_mainframe_sweeps: int,
+    ) -> str: """
+    """Set the mainframe sweeps.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * number_of_mainframe_sweeps - number of mainframe sweeps
+
+        Returns:
+            * GHSReturnValue - API return values
+    """
+
+    """return _trigger.set_number_of_mainframe_sweeps(
+            self._con_handle,
+            number_of_mainframe_sweeps,
+    )"""
+
+    def ghs_get_number_of_mainframe_sweeps(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the number of mainframe sweeps.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * number_of_mainframe_sweeps - number of mainframe sweeps
+        """
+
+        return _trigger.get_number_of_mainframe_sweeps(
+            self._con_handle)
+        
+    def ghs_set_sweep_count_status(
+        self,
+        sweep_count_status: int,
+    ) -> str:
+        """Set the sweep count status.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * sweep_count_status - sweep count status
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+        return _trigger.set_sweep_count_status(
+            self._con_handle,
+            sweep_count_status,
+        )
+
+    def ghs_get_sweep_count_status(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the sweep count status.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * sweep_count_status - sweep_count_status enable/disable
+        """
+
+        return _trigger.get_sweep_count_status(
+            self._con_handle)
+        
+    # masking as it is under development 
+    """def ghs_set_external_minimum_pulse_width(
+        self,
+        number_of_mainframe_sweeps: int,
+    ) -> str: """
+    """Set the external minimum pulse width or debounce filter time.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * number_of_mainframe_sweeps - number of mainframe sweeps
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+    """ return _trigger.set_external_minimum_pulse_width(
+            self._con_handle,
+            number_of_mainframe_sweeps,
+        ) """
+
+    def ghs_get_external_minimum_pulse_width(
+        self, 
+    ) -> tuple[str, int | None]:
+        """Determine the external minimum pulse width or debounce filter time.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Returns:
+            * GHSReturnValue - API return values
+            * external minimum pulse width - Debounce filter time
+        """
+
+        return _trigger.get_external_minimum_pulse_width(
+            self._con_handle)
+
+    # masking as it is under development     
+    """ def ghs_set_sweep_length(
+        self,
+        slot_id: int,
+        sweep_length: int,
+    ) -> str: """
+    """Set the sweep length.
+
+        *The system needs to be idle before calling this function.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * sweep_length: length of the sweep
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+    """ return _trigger.set_sweep_length(
+            self._con_handle,
+            slot_id,
+            sweep_length,
+        ) """
+
+    def ghs_get_sweep_length(
+        self, slot_id,
+    ) -> tuple[str, int | None]:
+        """Determine the sweep length.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+ 
+        Returns:
+            * GHSReturnValue - API return values
+            * Sweep Length - Sweep length
+        """
+
+        return _trigger.get_sweep_length(
+            self._con_handle,
+            slot_id)   
+
+    # masking as it is under development 
+    """def ghs_set_trigger_position(
+        self,
+        slot_id: int,
+        trigger_position: int,
+    ) -> str: """
+    """Set the trigger position.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * trigger_position: trigger position
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+    """ return _trigger.set_trigger_position(
+            self._con_handle,
+            slot_id,
+            trigger_position,
+        ) """
+
+    def ghs_get_trigger_position(
+        self, slot_id,
+    ) -> tuple[str, int | None]:
+        """Determine the trigger position.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+
+        Returns:
+            * GHSReturnValue - API return values
+            * trigger_position - trigger position
+        """
+
+        return _trigger.get_trigger_position(
+            self._con_handle,
+            slot_id)   
+    
+    # masking as it is under development      
+    """def ghs_set_continuous_leadout_time(
+        self,
+        slot_id: int,
+        continuous_leadout_time: int,
+    ) -> str:"""
+    """Set the continuous lead out time.
+
+        *The system needs to be idle before calling this function.*
+
+        *If the specified timer/counter mode is not supported by the recorder, the
+        timer/counter mode remains unchanged.*
+
+        *ReadWrite - This method will only process requests from the
+        connected client with the most privileges order (Privileges
+        order: 1- Perception, 2- GenDaq, 3- Other)*
+
+        Args:
+            * slot_id: The slot containing the recorder
+            * continuous_leadout_time: continuous lead out time
+
+        Returns:
+            * GHSReturnValue - API return values
+        """
+
+    """ return _trigger.set_continuous_leadout_time(
+            self._con_handle,
+            slot_id,
+            continuous_leadout_time,
+        )"""
+
+    def ghs_get_continuous_leadout_time(
+        self, slot_id,
+    ) -> tuple[str, int | None]:
+        """Determine the  continuous lead out time.
+
+        *Read - This method can be called by multiple connected clients at same
+        time.*
+
+        Args:
+            * slot_id: The slot containing the recorder
+
+        Returns:
+            * GHSReturnValue - API return values
+            * continuous_leadout_time - continuous leadout time
+        """
+
+        return _trigger.get_continuous_leadout_time(
+            self._con_handle,
+            slot_id)   
+        

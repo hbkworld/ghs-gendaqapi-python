@@ -118,6 +118,23 @@ def main():
         Serial no.: {serial}\
         Firmware version: {version}"
     )
+    
+    #get mainframe time
+    return_var, year, day, sec = gen.ghs_get_mainframe_time()
+    print(
+        f"GHSGetMainframeTime - Year:{year} Days:{day} Secs:{sec}\
+        Return Status: {return_var}"
+    )
+
+    year = 2025
+    day = 345
+    sec = 34.00
+    #set mainframe time
+    return_var = gen.ghs_set_mainframe_time(year,day,sec)
+    print(
+        f"GHSSetMainframeTime - Year:{year} Days:{day} Secs:{sec}\
+        Return Status: {return_var}"
+    )
 
     # Enable & diable identify
     return_var = gen.ghs_identify(True)

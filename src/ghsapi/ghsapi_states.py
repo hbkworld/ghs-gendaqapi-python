@@ -250,6 +250,42 @@ GHSDigitalOutMode = {
     "Alarm": 4,
 }
 
+GHSChannelType = {
+    "Invalid": 0,
+    "Analog": 1,
+    "Event": 2,
+    "TimerCounter": 3
+}
+
+GHSStartDataRecordingMethod = {
+    "StartDataRecording_OnStartOfAcquisition": 1,
+    "StartDataRecording_WaitForTrigger": 2,
+    "StartDataRecording_WaitForTriggerToMemory": 3,
+    "StartDataRecording_ReducedAndTriggerToMemory": 4
+}
+
+	
+GHSStopDataRecordingMethod = {
+    "StopDataRecording_Untriggered": 1,
+    "StopDataRecording_FirstTrigger": 2,
+    "StopDataRecording_ReTrigger": 3,
+    "StopDataRecording_StopTrigger": 4
+}
+GHSExternalTriggerInMode = {
+    "ExternalTriggerInMode_Disabled":  0,
+    "ExternalTriggerInMode_RisingEdge": 1,
+    "ExternalTriggerInMode_FallingEdge": 2,
+    "ExternalTriggerInMode_RisingEdge_InToOut": 3,
+    "ExternalTriggerInMode_FallingEdge_InToOut": 4
+}
+
+GHSDeBounceFilterTime = {
+    "DeBounceFilterTime_05": 0,
+    "DeBounceFilterTime_1": 1,
+    "DeBounceFilterTime_2": 2,
+    "DeBounceFilterTime_5": 3,
+    "DeBounceFilterTime_10": 4
+}
 
 def to_string(value: int, ghs_dict: dict) -> str:
     """Get status key by value from dictionary."""

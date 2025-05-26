@@ -81,6 +81,76 @@ def get_mainframe_info(
         response_json["FirmwareVersion"],
     )
 
+def get_mainframe_time(
+    con_handle: ConnectionHandler,
+) -> tuple[str, int | None, int | None, float | None]:
+    """Interface to get absolute time of the mainframe.
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+
+    Returns:
+        Tuple with status and the absolute time of the mainframe
+    """
+
+    response_json = con_handle.send_request_wait_response(
+        "GetMainframeTime", None
+    )
+
+    if (
+        not any(
+            key in response_json
+            for key in [
+                "AbsoluteTimeYear",
+                "AbsoluteTimeDay",
+                "AbsoluteTimeSeconds",
+            ]
+        )
+    ) or (response_json[RETURN_KEY] != GHSReturnValue["OK"]):
+        return (
+            to_string(response_json[RETURN_KEY], GHSReturnValue),
+            None,
+            None,
+            None,
+        )
+    return (
+        to_string(response_json[RETURN_KEY], GHSReturnValue),
+        response_json["AbsoluteTimeYear"],
+        response_json["AbsoluteTimeDay"],
+        response_json["AbsoluteTimeSeconds"],
+    )
+
+def set_mainframe_time(
+    con_handle: ConnectionHandler,
+    utcYear: int,
+    utcDay: int,
+    utcTime: float
+) -> str:
+    """Interface to get absolute time of the mainframe.
+
+    Args:
+        con_handle: A unique identifier per mainframe connection.
+
+    Returns:
+        Tuple with status and the absolute time of the mainframe
+    """  
+    mainframe_time_dict = {
+        "AbsoluteTimeYear": utcYear,
+        "AbsoluteTimeDay": utcDay,
+        "AbsoluteTimeSeconds":utcTime,
+        }
+    if not utcYear or not utcDay or not utcTime:
+        return "NullPtrArgument"
+    
+    if isinstance(utcYear, int) and isinstance(utcDay, int) and isinstance(utcTime, float):
+        pass
+    else:
+        return "InvalidDataType"
+
+    response_json = con_handle.send_request_wait_response(
+        "SetMainframeTime", mainframe_time_dict
+    )
+    return to_string(response_json[RETURN_KEY], GHSReturnValue)
 
 def get_disk_space(
     con_handle: ConnectionHandler,

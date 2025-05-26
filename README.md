@@ -47,7 +47,7 @@ Below are the steps to follow to setup devlopement enviroment for system integra
 ### Clone repo
 
 ```bash
-git clone https://github.com/hbk-world/ghs-gendaqapi-python.git
+git clone https://github.com/hbkworld/ghs-gendaqapi-python.git
 ```
 
 ### Virtual Environment

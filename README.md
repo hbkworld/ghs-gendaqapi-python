@@ -42,7 +42,6 @@ Below are the steps to follow to setup devlopement enviroment for system integra
 ### Requirements
 
 - `Python 3.10+`
-- `Anaconda/Miniconda`
 
 ### Clone repo
 
@@ -53,7 +52,8 @@ git clone https://github.com/hbkworld/ghs-gendaqapi-python.git
 ### Virtual Environment
 
 ```bash
-conda create --name <env> --file spec-file.txt
+py -m venv <venv_name>
+<venv_name>\Scripts\activate
 ```
 
 ### Install dependencies

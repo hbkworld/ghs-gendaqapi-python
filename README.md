@@ -50,10 +50,24 @@ Below are the steps to follow to setup devlopement enviroment for system integra
 git clone https://github.com/hbkworld/ghs-gendaqapi-python.git
 ```
 
-### Virtual Environment
+### Virtual Environment 
+
+**Option 1 :  Create Environment Using Conda**
+
+Run the following command to create environment from the specification file
 
 ```bash
-conda create --name <env> --file spec-file.txt
+conda create --name <venv_name> --file spec-file.txt
+conda activate <venv_name>
+```
+
+**Option 2 :  Create Environment Using Python**
+
+Navigate to the root of the repository to create virtual environment
+
+```bash
+py -m venv <venv_name>
+<venv_name>\Scripts\activate
 ```
 
 ### Install dependencies

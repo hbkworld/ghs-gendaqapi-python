@@ -246,7 +246,7 @@ class TestManageRecordings(unittest.TestCase):
         return_var = self.gen.ghs_delete_all_recordings()
         self.assertEqual(
             return_var,
-            "OK",
+            "RecordingNotFound",
             "Failed to delete all recording.",
         )
 

@@ -38,7 +38,7 @@ sys.path.append(parentdir)
 
 from src.ghsapi import ghsapi
 
-IP_ADDRESS = "10.96.129.129"
+IP_ADDRESS = "localhost"
 PORT_NO = 8006
 
 

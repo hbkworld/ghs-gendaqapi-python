@@ -1,7 +1,7 @@
 # GEN DAQ API - Python Driver
 > Setup, control and acquire data from the Genesis Highspeed systems via python.
 
-[![Build Status](https://dev.azure.com/GenesisHighSpeed/GHS%20ESW/_apis/build/status/hbk-world.ghs-gendaqapi-python?branchName=main)](https://dev.azure.com/GenesisHighSpeed/GHS%20ESW/_build/latest?definitionId=117&branchName=main)
+[![Build Status](https://dev.azure.com/GenesisHighSpeed/GHS%20ESW/_apis/build/status/hbkworld.ghs-gendaqapi-python?branchName=main)](https://dev.azure.com/GenesisHighSpeed/GHS%20ESW/_build/latest?definitionId=117&branchName=main)
 
 The GEN DAQ API can be used to control the HBM GEN Series tethered mainframes.
 
@@ -20,7 +20,7 @@ pip install ghs-gendaqapi-py
 ## Usage
 
 Refer [examples](./examples) for detailed use cases. 
-Refer [documentation](https://hbk-world.github.io/ghs-gendaqapi-python/html/index.html) for detailed API documentation
+Refer [documentation](https://github.com/hbkworld/ghs-gendaqapi-python/blob/main/docs/html/index.html) for detailed API documentation
 
 ```python
 from ghsapi import ghsapi
